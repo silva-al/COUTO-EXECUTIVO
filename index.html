@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Couto Executivo | Motorista Executivo Particular em São Paulo — Capital e Interior</title>
+<meta name="description" content="Couto Executivo: motorista particular para casamentos, reuniões, viagens e transfers em São Paulo capital e interior. Pontualidade, discrição e conforto. Agende pelo WhatsApp (19) 98346-3457.">
+<meta name="keywords" content="couto executivo, motorista executivo, motorista particular, transporte executivo são paulo, carro executivo casamento, transfer executivo, motorista para reunião">
+<meta name="author" content="Couto Executivo">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Couto Executivo | Motorista Executivo Particular">
+<meta property="og:description" content="Transporte executivo particular para casamentos, reuniões e viagens. São Paulo capital e interior.">
+<meta property="og:image" content="foto-couto.jpg">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Structured data para o Google entender o negócio -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "name": "Couto Executivo",
+  "image": "foto-couto.jpg",
+  "telephone": "+5519983463457",
+  "areaServed": [
+    {"@type": "City", "name": "São Paulo"},
+    {"@type": "AdministrativeArea", "name": "Interior de São Paulo"}
+  ],
+  "description": "Motorista executivo particular para casamentos, reuniões, viagens e transfers em São Paulo capital e interior.",
+  "priceRange": "$$"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy-deep: #0a0e13;
+    --navy-panel: #12181f;
+    --wood: #8a5a34;
+    --wood-light: #c99b6a;
+    --chrome: #d8dde1;
+    --ivory: #f2ede3;
+    --ivory-dim: #b9b3a6;
+    --line: rgba(216,221,225,0.14);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--navy-deep);
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color: var(--wood-light);
+    font-weight:600;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 28px;
+    background:linear-gradient(to bottom, rgba(10,14,19,0.85), transparent);
+    transition: background 0.3s ease;
+  }
+  header.nav.scrolled{
+    background: rgba(10,14,19,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand-mark{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .brand-mark strong{ color: var(--wood-light); font-weight:600; }
+
+  .nav-cta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background: var(--wood-light);
+    color: var(--navy-deep);
+    padding:10px 18px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--ivory); transform: translateY(-1px); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    background-image:
+      linear-gradient(to top, rgba(10,14,19,0.98) 5%, rgba(10,14,19,0.55) 45%, rgba(10,14,19,0.35) 70%, rgba(10,14,19,0.55) 100%),
+      url('foto-couto.jpg');
+    background-size: cover;
+    background-position: center 18%;
+  }
+
+  .hero-inner{
+    width:100%;
+    padding-bottom:76px;
+  }
+
+  .hero .eyebrow{ margin-bottom:18px; opacity:0; animation: rise 0.9s 0.15s ease forwards; }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height:0.98;
+    color: var(--ivory);
+    opacity:0;
+    animation: rise 0.9s 0.3s ease forwards;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--wood-light);
+  }
+
+  .hero-sub{
+    max-width:480px;
+    margin-top:22px;
+    color: var(--ivory-dim);
+    font-size:1.02rem;
+    opacity:0;
+    animation: rise 0.9s 0.45s ease forwards;
+  }
+
+  .hero-actions{
+    margin-top:36px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    opacity:0;
+    animation: rise 0.9s 0.6s ease forwards;
+  }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .btn-primary{
+    background: var(--wood-light);
+    color: var(--navy-deep);
+    padding:16px 28px;
+    font-weight:600;
+    font-size:0.92rem;
+    letter-spacing:0.02em;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(201,155,106,0.25); }
+
+  .btn-ghost{
+    border:1px solid rgba(242,237,227,0.35);
+    color: var(--ivory);
+    padding:16px 26px;
+    font-weight:500;
+    font-size:0.92rem;
+    border-radius:2px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--ivory); background: rgba(242,237,227,0.06); }
+
+  /* ---------- ODOMETER STRIP (signature element) ---------- */
+  .strip{
+    background: var(--navy-panel);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+  }
+  .strip .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  .strip-item{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    min-width:140px;
+  }
+  .strip-item .n{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    color: var(--wood-light);
+  }
+  .strip-item .l{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color: var(--ivory-dim);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:110px 0; }
+  .section-head{ max-width:620px; margin-bottom:56px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.9rem, 4vw, 2.7rem); color: var(--ivory); }
+  .section-head p{ margin-top:16px; color: var(--ivory-dim); font-size:1.02rem; }
+
+  /* about */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-copy p{ color: var(--ivory-dim); margin-bottom:18px; font-size:1.02rem; }
+  .about-copy p:first-child{ color: var(--ivory); font-size:1.15rem; font-family:'Fraunces', serif; font-weight:400; }
+
+  .wheel-detail{
+    aspect-ratio: 4/5;
+    background: var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    position:relative;
+    overflow:hidden;
+    background-image: url('foto-couto.jpg');
+    background-size: 220%;
+    background-position: 30% 78%;
+  }
+  .wheel-detail::after{
+    content:'';
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(10,14,19,0) 60%, rgba(10,14,19,0.5));
+  }
+  .wheel-caption{
+    position:absolute;
+    bottom:18px; left:18px;
+    z-index:2;
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color: var(--ivory-dim);
+  }
+
+  /* occasions — route-line motif instead of generic numbered list */
+  .occasions{ position:relative; }
+  .route-line{
+    position:relative;
+    padding-left:36px;
+    border-left:1px solid var(--line);
+  }
+  .occasion{
+    position:relative;
+    padding-bottom:52px;
+  }
+  .occasion:last-child{ padding-bottom:0; }
+  .occasion::before{
+    content:'';
+    position:absolute;
+    left:-42px;
+    top:4px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background: var(--wood-light);
+    box-shadow: 0 0 0 4px var(--navy-deep), 0 0 0 5px var(--line);
+  }
+  .occasion h3{
+    color: var(--ivory);
+    font-size:1.4rem;
+    margin-bottom:8px;
+  }
+  .occasion p{ color: var(--ivory-dim); max-width:560px; }
+  .occasion .tag{
+    display:inline-block;
+    margin-top:12px;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color: var(--wood-light);
+  }
+
+  /* testimonials placeholder */
+  .testimonials-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:24px;
+  }
+  .t-card{
+    background: var(--navy-panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:0;
+    overflow:hidden;
+  }
+  .t-video{
+    aspect-ratio: 9/12;
+    background:
+      linear-gradient(135deg, rgba(201,155,106,0.08), rgba(216,221,225,0.03));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .t-video .play{
+    width:52px; height:52px;
+    border-radius:50%;
+    border:1px solid rgba(242,237,227,0.4);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .t-video .play::after{
+    content:'';
+    border-style:solid;
+    border-width:8px 0 8px 13px;
+    border-color: transparent transparent transparent var(--ivory-dim);
+    margin-left:3px;
+  }
+  .t-meta{
+    padding:18px 20px;
+    border-top:1px solid var(--line);
+  }
+  .t-meta .name{ font-family:'Fraunces', serif; color:var(--ivory); font-size:1rem; }
+  .t-meta .role{ font-size:0.78rem; color:var(--ivory-dim); margin-top:2px; }
+
+  /* regions */
+  .regions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .region-pill{
+    border:1px solid var(--line);
+    padding:10px 20px;
+    border-radius:999px;
+    font-size:0.88rem;
+    color: var(--ivory-dim);
+  }
+  .region-pill.main{
+    border-color: var(--wood-light);
+    color: var(--wood-light);
+  }
+
+  /* contact / footer */
+  .contact{
+    background: var(--navy-panel);
+    border-top:1px solid var(--line);
+  }
+  .contact-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:36px;
+  }
+  .contact h2{ font-size:clamp(2rem,5vw,3.2rem); max-width:520px; color:var(--ivory); }
+  .contact-phone{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    color: var(--wood-light);
+    margin-top:18px;
+    display:inline-block;
+  }
+
+  footer{
+    padding:32px 0;
+    border-top:1px solid var(--line);
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.8rem;
+    color: var(--ivory-dim);
+  }
+
+  /* floating whatsapp */
+  .float-wa{
+    position:fixed;
+    bottom:24px; right:24px;
+    z-index:200;
+    background: var(--wood-light);
+    color: var(--navy-deep);
+    width:58px; height:58px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+  }
+  .float-wa:hover{ transform: scale(1.08); }
+  .float-wa svg{ width:26px; height:26px; }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns:1fr; gap:36px; }
+    .about-grid .wheel-detail{ order:-1; aspect-ratio:16/10; }
+    .testimonials-grid{ grid-template-columns:1fr 1fr; }
+    .contact-inner{ align-items:flex-start; }
+  }
+  @media (max-width: 560px){
+    section{ padding:80px 0; }
+    .testimonials-grid{ grid-template-columns:1fr; }
+    .strip .wrap{ flex-direction:column; }
+    header.nav .brand-mark{ font-size:0.95rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="brand-mark">Couto <strong>Executivo</strong></div>
+  <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20servi%C3%A7o." class="nav-cta">Falar no WhatsApp</a>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Motorista Executivo Particular — São Paulo, Capital & Interior</div>
+    <h1>Chegue com a <em>presença</em><br>que o momento exige.</h1>
+    <p class="hero-sub">Casamentos, reuniões, viagens e compromissos onde pontualidade e discrição não são diferencial — são o mínimo.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o." class="btn-primary">
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#ocasioes" class="btn-ghost">Ver ocasiões atendidas</a>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item">
+      <div class="n">São Paulo</div>
+      <div class="l">Capital & Interior</div>
+    </div>
+    <div class="strip-item">
+      <div class="n">Casamentos</div>
+      <div class="l">Reuniões · Viagens</div>
+    </div>
+    <div class="strip-item">
+      <div class="n">Sob Reserva</div>
+      <div class="l">Agenda por WhatsApp</div>
+    </div>
+  </div>
+</div>
+
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <p>Depois de anos rodando aplicativo, decidi construir algo mais alinhado ao que sempre fiz de verdade: cuidar de quem confia em mim para chegar bem — no horário certo, do jeito certo.</p>
+      <p>Hoje, Couto Executivo é transporte particular sob reserva, pensado para quem não pode se dar ao luxo de imprevisto: noivos a caminho da cerimônia, executivos entre reuniões, famílias em viagem.</p>
+      <p>Carro, terno e relógio no pulso não são estética — são o padrão que eu sigo em cada corrida.</p>
+    </div>
+    <div class="wheel-detail reveal">
+      <span class="wheel-caption">A bordo — cada detalhe cuidado</span>
+    </div>
+  </div>
+</section>
+
+<section id="ocasioes" style="background:var(--navy-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Ocasiões atendidas</div>
+      <h2>Um carro à altura de cada compromisso.</h2>
+      <p>Cada tipo de corrida pede um ritmo diferente. Aqui está como eu me preparo para as principais.</p>
+    </div>
+    <div class="route-line reveal">
+      <div class="occasion">
+        <h3>Casamentos</h3>
+        <p>Do buffet à cerimônia, dos noivos aos padrinhos: trajeto cronometrado, carro impecável e zero sobressalto num dia que não se repete.</p>
+        <span class="tag">Reserva com antecedência recomendada</span>
+      </div>
+      <div class="occasion">
+        <h3>Reuniões & compromissos corporativos</h3>
+        <p>Chegada discreta, tempo de espera flexível e trajeto planejado para você usar o percurso — não perdê-lo.</p>
+        <span class="tag">Disponível para diárias e pacotes recorrentes</span>
+      </div>
+      <div class="occasion">
+        <h3>Viagens — capital e interior</h3>
+        <p>Deslocamentos entre cidades do interior paulista e a capital, com conforto de quem não quer dirigir a própria viagem.</p>
+        <span class="tag">Consulte cidades e valores</span>
+      </div>
+      <div class="occasion">
+        <h3>Transfers e compromissos pontuais</h3>
+        <p>Aeroporto, eventos, jantares — qualquer ocasião em que chegar bem faz parte do compromisso.</p>
+        <span class="tag">Agendamento pelo WhatsApp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="depoimentos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Depoimentos</div>
+      <h2>Quem já andou comigo conta melhor.</h2>
+      <p>Espaço reservado para os vídeos e fotos de clientes — em atualização.</p>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="t-card">
+        <div class="t-video"><div class="play"></div></div>
+        <div class="t-meta">
+          <div class="name">Depoimento em vídeo</div>
+          <div class="role">Em breve</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-video"><div class="play"></div></div>
+        <div class="t-meta">
+          <div class="name">Depoimento em vídeo</div>
+          <div class="role">Em breve</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-video"><div class="play"></div></div>
+        <div class="t-meta">
+          <div class="name">Depoimento em vídeo</div>
+          <div class="role">Em breve</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="regioes" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:28px;">
+      <div class="eyebrow">Área de atendimento</div>
+      <h2>São Paulo, de ponta a ponta.</h2>
+    </div>
+    <div class="regions reveal">
+      <span class="region-pill main">São Paulo — Capital</span>
+      <span class="region-pill">Interior de São Paulo</span>
+      <span class="region-pill">Regiões próximas sob consulta</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap contact-inner">
+    <div class="reveal">
+      <div class="eyebrow">Agende seu horário</div>
+      <h2>Vamos combinar sua próxima corrida.</h2>
+      <a class="contact-phone" href="tel:+5519983463457">(19) 98346-3457</a>
+    </div>
+    <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o." class="btn-primary reveal">
+      Chamar no WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Couto Executivo — Motorista Executivo Particular</span>
+    <span>São Paulo, Capital & Interior</span>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o." aria-label="Falar no WhatsApp" title="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.912 6.478L4 29l7.72-1.867A11.94 11.94 0 0016.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.75c-1.98 0-3.83-.55-5.41-1.51l-.388-.23-4.58 1.108 1.144-4.463-.253-.402A9.71 9.71 0 016.25 15c0-5.385 4.366-9.75 9.751-9.75 5.384 0 9.75 4.365 9.75 9.75s-4.366 9.75-9.75 9.75zm5.34-7.29c-.293-.147-1.735-.857-2.004-.955-.269-.098-.464-.147-.66.147-.196.293-.758.955-.929 1.15-.171.196-.343.22-.635.073-.293-.147-1.236-.456-2.355-1.454-.87-.776-1.457-1.735-1.628-2.028-.171-.293-.018-.451.129-.598.132-.132.293-.343.44-.514.147-.171.196-.293.294-.489.098-.196.049-.367-.024-.514-.073-.147-.66-1.591-.905-2.18-.238-.572-.48-.494-.66-.503-.171-.008-.367-.01-.562-.01a1.08 1.08 0 00-.782.367c-.269.293-1.026 1.002-1.026 2.445s1.051 2.836 1.198 3.032c.147.196 2.07 3.16 5.016 4.432.701.303 1.248.484 1.674.62.703.224 1.343.192 1.849.117.564-.084 1.735-.709 1.98-1.394.245-.685.245-1.271.171-1.394-.073-.122-.269-.196-.562-.343z"/></svg>
+</a>
+
+<script>
+  // navbar background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
