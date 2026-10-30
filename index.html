@@ -3,35 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Couto Executivo | Motorista Particular de Alto Padrão em São Paulo</title>
-<meta name="description" content="Couto Executivo: transporte executivo de luxo para casamentos, reuniões, viagens e transfers em São Paulo (Capital e Interior). Pontualidade britânica, discrição e sofisticação.">
-<meta name="keywords" content="couto executivo, motorista executivo, motorista particular são paulo, transfer executivo aeroporto, carro executivo casamento, motorista terno sp, transfer guarulhos congonhas viracopos">
+<title>Couto Executivo | Transporte Executivo & Motorista Particular (Campinas, Hortolândia e SP)</title>
+<meta name="description" content="Couto Executivo: transporte executivo de alto padrão somente com hora marcada para aeroportos (Viracopos, Guarulhos e Congonhas), empresas, casamentos e viagens em Hortolândia, Campinas e São Paulo.">
+<meta name="keywords" content="couto executivo, transporte executivo, motorista executivo, motorista particular, transporte executivo hortolândia, transporte executivo campinas, transfer viracopos guarulhos congonhas, carro executivo casamento, motorista hora marcada">
 <meta name="author" content="Couto Executivo">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://silva-al.github.io/COUTO-EXECUTIVO/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <!-- Open Graph / Meta -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Couto Executivo | Transporte Executivo & Chauffeur Particular">
-<meta property="og:description" content="Chegue com a presença que o seu momento exige. Agendamento exclusivo por WhatsApp.">
-<meta property="og:image" content="foto-couto.jpg">
+<meta property="og:type" content="business.business">
+<meta property="og:site_name" content="Couto Executivo">
+<meta property="og:url" content="https://silva-al.github.io/COUTO-EXECUTIVO/">
+<meta property="og:title" content="Couto Executivo | Transporte Executivo & Motorista Particular">
+<meta property="og:description" content="Atendimento exclusivo somente com hora marcada para empresas, aeroportos, casamentos e viagens. Pontualidade, conforto e total segurança.">
+<meta property="og:image" content="https://silva-al.github.io/COUTO-EXECUTIVO/foto-couto.jpg">
+<meta property="og:video" content="https://silva-al.github.io/COUTO-EXECUTIVO/comercial_couto_computador_1080p.mp4">
+<meta property="og:video:type" content="video/mp4">
+<meta property="og:video:width" content="1920">
+<meta property="og:video:height" content="1080">
 <meta property="og:locale" content="pt_BR">
 
-<!-- Schema.org JSON-LD -->
+<!-- Schema.org JSON-LD Oficial (Negócio Local + Vídeo de Chegada para o Google) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ChauffeurService",
-  "name": "Couto Executivo",
-  "image": "foto-couto.jpg",
-  "telephone": "+5519983463457",
-  "email": "contato@coutoexecutivo.com.br",
-  "areaServed": [
-    {"@type": "City", "name": "São Paulo"},
-    {"@type": "City", "name": "Campinas"},
-    {"@type": "AdministrativeArea", "name": "Interior de São Paulo"}
-  ],
-  "description": "Serviço de motorista executivo e transfer particular de alto padrão para casamentos, reuniões, eventos e viagens.",
-  "priceRange": "$$$"
+  "@graph": [
+    {
+      "@type": ["TaxiService", "LocalBusiness"],
+      "@id": "https://silva-al.github.io/COUTO-EXECUTIVO/#negocio",
+      "name": "Couto Executivo - Transporte Executivo",
+      "alternateName": "Couto Motorista Executivo",
+      "url": "https://silva-al.github.io/COUTO-EXECUTIVO/",
+      "logo": "https://silva-al.github.io/COUTO-EXECUTIVO/favicon.svg",
+      "image": "https://silva-al.github.io/COUTO-EXECUTIVO/foto-couto.jpg",
+      "telephone": "+55-19-98346-3457",
+      "priceRange": "$$$",
+      "description": "Transporte executivo e motorista particular somente com hora marcada para empresas, transfers de aeroportos (Viracopos, Guarulhos e Congonhas), casamentos, eventos e viagens em Hortolândia, Campinas e São Paulo.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hortolândia",
+        "addressRegion": "SP",
+        "addressCountry": "BR"
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Hortolândia"},
+        {"@type": "City", "name": "Campinas"},
+        {"@type": "City", "name": "Sumaré"},
+        {"@type": "City", "name": "Paulínia"},
+        {"@type": "City", "name": "Indaiatuba"},
+        {"@type": "City", "name": "São Paulo"}
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-19-98346-3457",
+        "contactType": "reservations",
+        "availableLanguage": ["Portuguese"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "description": "Atendimento somente com hora marcada (mediante agendamento prévio pelo WhatsApp)"
+        }
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo."
+        },
+        "result": {
+          "@type": "Reservation",
+          "name": "Agendamento de Transporte Executivo com Hora Marcada"
+        }
+      },
+      "subjectOf": {
+        "@id": "https://silva-al.github.io/COUTO-EXECUTIVO/#video-chegada"
+      }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://silva-al.github.io/COUTO-EXECUTIVO/#video-chegada",
+      "name": "Apresentação Couto Transporte Executivo",
+      "description": "Conheça o serviço de transporte executivo do Couto para empresas, aeroportos (Guarulhos, Congonhas e Viracopos), casamentos, eventos e viagens particulares.",
+      "thumbnailUrl": "https://silva-al.github.io/COUTO-EXECUTIVO/foto-couto.jpg",
+      "uploadDate": "2026-10-30T14:00:00-03:00",
+      "duration": "PT26S",
+      "contentUrl": "https://silva-al.github.io/COUTO-EXECUTIVO/comercial_couto_computador_1080p.mp4"
+    }
+  ]
 }
 </script>
 
@@ -345,6 +403,99 @@
     align-items: center;
     gap: 18px;
     flex-wrap: wrap;
+  }
+
+  /* ---------- VÍDEO DE CHEGADA (HERO SHOWCASE) ---------- */
+  .hero-showcase-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1.15fr;
+    gap: 44px;
+    align-items: center;
+  }
+  .hero-showcase-grid .hero-title {
+    font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+  }
+  .arrival-video-wrap {
+    position: relative;
+    border-radius: 8px;
+    padding: 6px;
+    background: linear-gradient(135deg, rgba(201, 155, 106, 0.55) 0%, rgba(17, 23, 32, 0.85) 50%, rgba(201, 155, 106, 0.35) 100%);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(201, 155, 106, 0.16);
+  }
+  .arrival-video-inner {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #05070a;
+  }
+  .arrival-video-inner video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-unmute-btn {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #070a0e;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 22px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.75), 0 0 0 0 rgba(201, 155, 106, 0.65);
+    animation: goldPulse 2.2s infinite;
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+  .video-unmute-btn:hover {
+    transform: translateX(-50%) scale(1.04);
+    filter: brightness(1.08);
+  }
+  .video-unmute-btn.is-unmuted {
+    background: rgba(7, 10, 14, 0.82);
+    color: var(--gold);
+    border: 1px solid var(--line-gold);
+    animation: none;
+    bottom: auto;
+    top: 12px;
+    left: auto;
+    right: 12px;
+    transform: none;
+    padding: 7px 14px;
+    font-size: 0.72rem;
+    backdrop-filter: blur(8px);
+  }
+  @keyframes goldPulse {
+    0% { box-shadow: 0 8px 26px rgba(0, 0, 0, 0.75), 0 0 0 0 rgba(201, 155, 106, 0.7); }
+    70% { box-shadow: 0 8px 26px rgba(0, 0, 0, 0.75), 0 0 0 12px rgba(201, 155, 106, 0); }
+    100% { box-shadow: 0 8px 26px rgba(0, 0, 0, 0.75), 0 0 0 0 rgba(201, 155, 106, 0); }
+  }
+  .video-caption-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px 4px 14px;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .video-caption-bar strong {
+    color: var(--gold);
+    font-weight: 600;
   }
 
   .btn-primary {
@@ -905,6 +1056,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 960px) {
     .nav-menu { display: none; }
+    .hero-showcase-grid { grid-template-columns: 1fr; gap: 32px; }
     .odometer-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .pillars-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -960,28 +1112,47 @@
   <div class="hero-overlay"></div>
 
   <div class="wrap hero-content">
-    <div class="hero-badge-live gs-reveal">
-      <span class="badge-pulse"></span>
-      Agenda Aberta · São Paulo & Interior
-    </div>
+    <div class="hero-showcase-grid">
+      <div>
+        <div class="hero-badge-live gs-reveal">
+          <span class="badge-pulse"></span>
+          Somente com Hora Marcada · Campinas, Hortolândia & SP
+        </div>
 
-    <h1 class="hero-title gs-reveal">
-      Chegue com a <em>presença</em> e a pontualidade que o seu momento exige.
-    </h1>
+        <h1 class="hero-title gs-reveal">
+          Chegue com a <em>presença</em> e a pontualidade que o seu momento exige.
+        </h1>
 
-    <p class="hero-subtitle gs-reveal">
-      Transporte particular de alto padrão sob reserva para casamentos, reuniões executivas, viagens e transfers de aeroporto.
-    </p>
+        <p class="hero-subtitle gs-reveal">
+          Transporte executivo particular de alto padrão sob agendamento para empresas, transfers de aeroportos (Viracopos, Guarulhos e Congonhas), casamentos e viagens.
+        </p>
 
-    <div class="hero-actions gs-reveal">
-      <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20servi%C3%A7o%20com%20o%20Couto%20Executivo." class="btn-primary" target="_blank" rel="noopener">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        Agendar pelo WhatsApp
-      </a>
+        <div class="hero-actions gs-reveal">
+          <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo." class="btn-primary" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Agendar Hora Marcada
+          </a>
 
-      <a href="#simulador" class="btn-ghost">
-        Simular Trajeto
-      </a>
+          <a href="#simulador" class="btn-ghost">
+            Simular Trajeto
+          </a>
+        </div>
+      </div>
+
+      <!-- VÍDEO DE CHEGADA / APRESENTAÇÃO OFICIAL -->
+      <div class="arrival-video-wrap gs-reveal">
+        <div class="arrival-video-inner">
+          <video id="arrivalVideo" src="comercial_couto_computador_1080p.mp4" poster="foto-couto.jpg" autoplay muted loop playsinline preload="auto"></video>
+          <button type="button" id="videoSoundBtn" class="video-unmute-btn" onclick="toggleHeroVideoSound()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+            <span>Ouvir Apresentação do Couto</span>
+          </button>
+        </div>
+        <div class="video-caption-bar">
+          <span><strong>Apresentação Oficial</strong> · Couto Transporte Executivo</span>
+          <span>Full HD</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1335,8 +1506,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div>© <span id="year"></span> Couto Executivo — Transporte Executivo & Chauffeur Particular</div>
-    <div>São Paulo · Campinas · Interior de SP</div>
+    <div>© <span id="year"></span> Couto Executivo — Transporte Executivo & Motorista Particular (Atendimento Somente com Hora Marcada)</div>
+    <div>Hortolândia · Campinas · Viracopos · Guarulhos · São Paulo</div>
   </div>
 </footer>
 
@@ -1473,6 +1644,26 @@
 
     const url = `https://wa.me/5519983463457?text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
+  }
+
+  // 6. Vídeo de Chegada: Ativar / Silenciar Áudio e Reiniciar Locução
+  function toggleHeroVideoSound() {
+    const vid = document.getElementById('arrivalVideo');
+    const btn = document.getElementById('videoSoundBtn');
+    if (!vid || !btn) return;
+
+    if (vid.muted) {
+      vid.muted = false;
+      vid.currentTime = 0;
+      vid.controls = true;
+      vid.play();
+      btn.classList.add('is-unmuted');
+      btn.innerHTML = '<span>Silenciar Áudio</span>';
+    } else {
+      vid.muted = true;
+      btn.classList.remove('is-unmuted');
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg><span>Ouvir Apresentação do Couto</span>';
+    }
   }
 </script>
 
