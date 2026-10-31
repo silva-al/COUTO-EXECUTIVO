@@ -481,283 +481,338 @@
       text-transform: uppercase;
     }
 
-    /* ---------- TELA INICIAL: ROLAGEM 3D STICKY (DENILSON COUTO) ---------- */
-    .hero-showcase-section {
+    
+    /* ========================================================
+       COUTO EXECUTIVO — CINEMATIC JOURNEY 3D (GSAP + SCROLLTRIGGER)
+       As 7 Técnicas Obrigatórias:
+       1. ScrollTrigger Pin (Fixar a sequência)
+       2. GSAP Scrub (Sincronizar com scroll)
+       3. Camera Dolly (Aproximar e afastar)
+       4. Match Cut (Conectar movimentos)
+       5. Mask Transition (Corte diagonal com filete dourado)
+       6. Parallax 3D (Profundidade)
+       7. Crossfade (Mistura suave de ambientes)
+       ======================================================== */
+    .cinematic-journey-section {
       position: relative;
       width: 100%;
-      height: 440vh;
+      height: 480vh; /* Altura de rolagem para controle cinematográfico suave */
       background: #070a0e;
     }
 
-    .door-showcase-stage {
+    .cinematic-journey-pin {
       position: sticky;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100vh;
       height: 100dvh;
-      padding-top: 56px;
       overflow: hidden;
+      background: #070a0e;
+      z-index: 10;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      background: #05070a;
-      user-select: none;
-      perspective: 1400px;
-      perspective-origin: center center;
-    }
-    @media (min-width: 768px) {
-      .door-showcase-stage {
-        padding-top: 72px;
-      }
+      justify-content: space-between;
     }
 
-    .door-bg-image {
+    /* Top bar: Badge e Contador de Cenas */
+    .cinematic-top-bar {
+      position: absolute;
+      top: 68px; /* Abaixo do header */
+      left: 0;
+      right: 0;
+      z-index: 30;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .cinematic-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(7, 10, 14, 0.82);
+      border: 1px solid rgba(201, 155, 106, 0.45);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c99b6a;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .badge-dot-live {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 10px #25d366;
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .cinematic-step-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(7, 10, 14, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #f5f2eb;
+      backdrop-filter: blur(10px);
+    }
+
+    .step-num {
+      color: #c99b6a;
+      font-weight: 700;
+    }
+
+    .step-sep {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Palco de Cenas Sobrepostas */
+    .cinematic-stage {
       position: absolute;
       inset: 0;
-      background-size: cover;
-      background-position: center 30%;
-      transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1;
-      transform: scale(1.03);
-    }
-    .door-showcase-stage.closing .door-bg-image {
-      transform: scale(0.97);
+      width: 100%;
+      height: 100%;
+      z-index: 10;
     }
 
-    .door-bg-overlay {
+    .cinematic-scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      will-change: clip-path, opacity, transform;
+    }
+
+    .cinematic-scene.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Plano de Fundo com Camera Dolly e Parallax */
+    .scene-bg {
+      position: absolute;
+      inset: -5% -5% -5% -5%;
+      width: 110%;
+      height: 110%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      will-change: transform;
+      transform-origin: center center;
+    }
+
+    /* Vinheta suave: mantém o centro e motorista 100% livres e nítidos */
+    .scene-vignette {
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, 
-        rgba(7, 10, 14, 0.12) 0%, 
-        rgba(7, 10, 14, 0.22) 42%, 
-        rgba(7, 10, 14, 0.78) 75%, 
-        rgba(7, 10, 14, 0.98) 100%
+        rgba(7, 10, 14, 0.7) 0%, 
+        rgba(7, 10, 14, 0.15) 20%, 
+        rgba(7, 10, 14, 0.0) 45%, 
+        rgba(7, 10, 14, 0.45) 70%, 
+        rgba(7, 10, 14, 0.95) 100%
       );
-      z-index: 2;
       pointer-events: none;
+      z-index: 2;
     }
 
-    /* As duas portas executivas em ROLAGEM 3D (Abertura e Fechamento Realista) */
-    .executive-door {
+    /* Filete Dourado Luminoso na Divisão Diagonal (Light Sweep) */
+    .gold-diagonal-divider {
       position: absolute;
       top: 0;
-      bottom: 0;
-      width: 50.2%;
-      z-index: 12;
-      background: linear-gradient(135deg, #18202d 0%, #0d1219 50%, #06080c 100%);
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
-      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
-      display: flex;
-      align-items: center;
-      pointer-events: none;
-      backface-visibility: hidden;
-    }
-
-    .executive-door-left {
-      left: 0;
-      transform-origin: left center;
-      border-right: 2px solid var(--gold);
-      transform: rotateY(-92deg);
-      opacity: 0;
-      justify-content: flex-end;
-      padding-right: 14px;
-    }
-
-    .executive-door-right {
-      right: 0;
-      transform-origin: right center;
-      border-left: 2px solid var(--gold);
-      transform: rotateY(92deg);
-      opacity: 0;
-      justify-content: flex-start;
-      padding-left: 14px;
-    }
-
-    /* ROLAGEM 3D: Quando as portas se fecham no centro */
-    .door-showcase-stage.closing .executive-door-left {
-      transform: rotateY(0deg);
-      opacity: 1;
-    }
-    .door-showcase-stage.closing .executive-door-right {
-      transform: rotateY(0deg);
-      opacity: 1;
-    }
-
-    /* Maçaneta cromada e dourada com reflexo 3D */
-    .door-handle {
-      width: 7px;
-      height: 52px;
-      border-radius: 4px;
-      background: linear-gradient(180deg, #ffffff 0%, var(--gold) 50%, #8a5a34 100%);
-      box-shadow: 0 0 14px rgba(229, 184, 105, 0.8), inset 0 1px 1px #fff;
-    }
-
-    /* Selo central dourado quando as portas fecham */
-    .door-closed-badge {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.85);
-      z-index: 15;
-      background: rgba(7, 10, 14, 0.95);
-      border: 1.5px solid var(--gold);
-      border-radius: 16px;
-      padding: 16px 26px;
-      text-align: center;
-      box-shadow: 0 0 35px rgba(201, 155, 106, 0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .door-showcase-stage.closing .door-closed-badge {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .door-closed-monogram {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .door-closed-text {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--ivory);
-      text-transform: uppercase;
-    }
-
-    .door-closed-sub {
-      font-size: 0.65rem;
-      color: var(--gold);
-      margin-top: 2px;
-      letter-spacing: 0.05em;
-    }
-
-    /* Card inferior limpo & elegante (não tampa as pessoas nem a foto) */
-    .door-clean-card {
-      position: relative;
+      left: -10%;
+      width: 120%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        #c99b6a 20%, 
+        #ffffff 50%, 
+        #c99b6a 80%, 
+        transparent 100%
+      );
+      box-shadow: 0 0 16px rgba(229, 184, 105, 0.9), 0 0 30px rgba(229, 184, 105, 0.5);
       z-index: 5;
-      padding: 14px 24px 28px;
-      max-width: 1000px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: left;
+      transform-origin: left top;
+      pointer-events: none;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    /* Conteúdo Tipográfico Mobile de Luxo (Sem caixas pretas cobrindo pessoas) */
+    .scene-content {
+      position: absolute;
+      bottom: 24px;
+      left: 16px;
+      right: 16px;
+      z-index: 15;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      background: transparent;
-    }
-    @media (max-width: 768px) {
-      .door-clean-card {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-bottom: 24px;
-      }
-    }
-
-    .door-card-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(7, 10, 14, 0.85);
-      border: 1px solid var(--line-gold);
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      backdrop-filter: blur(8px);
-    }
-
-    .door-card-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.45rem, 3.8vw, 2.1rem);
-      font-weight: 700;
-      color: var(--ivory);
-      line-height: 1.15;
-      margin: 0;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
-    }
-
-    .door-card-sub {
-      font-size: clamp(0.82rem, 1.8vw, 0.92rem);
-      color: var(--ivory-dim);
-      line-height: 1.4;
-      margin: 0;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      gap: 8px;
+      will-change: transform, opacity;
       max-width: 520px;
     }
 
-    .door-clean-btn {
+    .scene-content.content-right {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .scene-content.content-left {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .scene-brand-icon {
+      font-family: var(--font-serif-accent);
+      font-size: 1.1rem;
+      color: #c99b6a;
+      border: 1px solid rgba(201, 155, 106, 0.5);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7, 10, 14, 0.7);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2px;
+    }
+
+    .scene-tag {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #c99b6a;
+      display: inline-block;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    }
+
+    .scene-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.42rem, 5.2vw, 1.95rem);
+      font-weight: 600;
+      color: #f5f2eb;
+      line-height: 1.16;
+      margin: 0;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .scene-title em {
+      font-style: italic;
+      color: #c99b6a;
+      font-weight: 400;
+    }
+
+    .scene-sub {
+      font-size: 0.84rem;
+      color: #a6adb5;
+      line-height: 1.4;
+      margin: 0;
+      max-width: 440px;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    .scene-cta-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      background: linear-gradient(135deg, #c99b6a 0%, #8a5a34 100%);
       color: #070a0e;
-      padding: 12px 26px;
-      border-radius: 6px;
-      font-size: 0.86rem;
+      padding: 13px 22px;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      box-shadow: 0 4px 20px rgba(201, 155, 106, 0.45);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      margin-top: 6px;
+      box-shadow: 0 4px 20px rgba(201, 155, 106, 0.4);
+      margin-top: 4px;
       text-decoration: none;
-    }
-    .door-clean-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(201, 155, 106, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      pointer-events: auto;
     }
 
-    /* Setas laterais de navegação discretas */
-    .door-arrow-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 6;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(7, 10, 14, 0.65);
-      border: 1px solid var(--line-gold);
-      color: var(--gold);
+    .scene-cta-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* 4 Pilares da Cena 5 */
+    .scene-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .pillar-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.2s ease;
+      gap: 7px;
+      background: rgba(17, 23, 32, 0.7);
+      border: 1px solid rgba(201, 155, 106, 0.25);
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #f5f2eb;
+      backdrop-filter: blur(6px);
     }
-    .door-arrow-btn:hover {
-      background: var(--gold);
-      color: #070a0e;
-    }
-    .door-arrow-left { left: 14px; }
-    .door-arrow-right { right: 14px; }
 
-    @media (max-width: 640px) {
-      .door-arrow-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 1.2rem;
-      }
-      .door-arrow-left { left: 8px; }
-      .door-arrow-right { right: 8px; }
+    .pillar-icon {
+      font-size: 0.9rem;
     }
+
+    /* Barra Lateral de Progresso das Cenas (5 traços verticais) */
+    .cinematic-progress-bar {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .progress-segment {
+      width: 3px;
+      height: 14px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      transition: height 0.3s ease, background 0.3s ease;
+    }
+
+    .progress-segment.active {
+      height: 32px;
+      background: #c99b6a;
+      box-shadow: 0 0 10px rgba(201, 155, 106, 0.8);
+    }
+
 
     /* 5 barrinhas indicadoras na base */
     .door-indicators-bar {
@@ -1031,6 +1086,9 @@
       }
     }
   </style>
+  <!-- GSAP & ScrollTrigger Oficiais -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
@@ -1063,46 +1121,110 @@
     </div>
   </header>
 
-  <!-- TELA INICIAL: EXPERIÊNCIA DE EMBARQUE EXECUTIVO COM DENILSON COUTO (PORTAS ABRINDO E FECHANDO) -->
-  <section class="hero-showcase-section" id="inicio">
-    <div class="door-showcase-stage" id="doorStage">
-      <!-- FOTO PRINCIPAL LIMPA: CLIENTE FELIZ + MOTORISTA DENILSON COUTO NA PORTA -->
-      <div class="door-bg-image" id="doorBgImage"></div>
-      <div class="door-bg-overlay"></div>
-
-      <!-- PORTA ESQUERDA DE CARRO EXECUTIVO -->
-      <div class="executive-door executive-door-left" id="doorLeft">
-        <div class="door-handle"></div>
+    <!-- COUTO EXECUTIVO — CINEMATIC JOURNEY 3D (EXPERIÊNCIA GSAP SCROLLTRIGGER 100% MOBILE) -->
+  <section class="cinematic-journey-section" id="inicio">
+    <div class="cinematic-journey-pin" id="cinematicPin">
+      <!-- Top Bar: Veículo Oficial & Contador de Cenas -->
+      <div class="cinematic-top-bar">
+        <div class="cinematic-badge">
+          <span class="badge-dot-live"></span>
+          <span>VW Nivus Cinza Moonstone Oficial</span>
+        </div>
+        <div class="cinematic-step-counter" id="cinematicCounter">
+          <span class="step-num" id="currentStepNum">01</span>
+          <span class="step-sep">/</span>
+          <span class="step-total">05</span>
+        </div>
       </div>
 
-      <!-- PORTA DIREITA DE CARRO EXECUTIVO -->
-      <div class="executive-door executive-door-right" id="doorRight">
-        <div class="door-handle"></div>
+      <!-- Palco Cinematográfico com as 5 Cenas -->
+      <div class="cinematic-stage" id="cinematicStage">
+        <!-- CENA 01 — AEROPORTO EXECUTIVO -->
+        <div class="cinematic-scene scene-1 active" id="scene1">
+          <div class="scene-bg" id="bg1" style="background-image: url('journey-scene-1-aeroporto.jpg');"></div>
+          <div class="scene-vignette"></div>
+          <div class="scene-content content-left" id="content1">
+            <span class="scene-tag">AEROPORTO EXECUTIVO</span>
+            <h2 class="scene-title">Mais que transporte,<br><em>uma experiência executiva.</em></h2>
+            <p class="scene-sub">Conforto, segurança e pontualidade em cada detalhe.</p>
+            <a href="https://wa.me/5519983463457?text=Ol%C3%A1,%20Denilson!%20Gostaria%20de%20agendar%20transporte%20executivo%20no%20aeroporto."
+               class="scene-cta-btn" target="_blank" rel="noopener">
+              <span>Agendar pelo WhatsApp</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CENA 02 — CASAMENTOS & NOIVAS (CAMERA DOLLY + EMBARQUE) -->
+        <div class="cinematic-scene scene-2" id="scene2">
+          <div class="scene-bg" id="bg2" style="background-image: url('journey-scene-2-casamento.jpg');"></div>
+          <div class="scene-vignette"></div>
+          <div class="gold-diagonal-divider" id="divider2"></div>
+          <div class="scene-content content-right" id="content2">
+            <div class="scene-brand-icon">CE</div>
+            <span class="scene-tag">CASAMENTOS & NOIVAS</span>
+            <h2 class="scene-title">Momentos especiais<br><em>merecem um cuidado especial.</em></h2>
+            <p class="scene-sub">O motorista abrindo a porta com cordialidade para a noiva desembarcar no altar.</p>
+          </div>
+        </div>
+
+        <!-- CENA 03 — TRANSPORTE EXECUTIVO (MATCH CUT CABINE INTERIOR) -->
+        <div class="cinematic-scene scene-3" id="scene3">
+          <div class="scene-bg" id="bg3" style="background-image: url('journey-scene-3-volante.jpg');"></div>
+          <div class="scene-vignette"></div>
+          <div class="gold-diagonal-divider" id="divider3"></div>
+          <div class="scene-content content-left" id="content3">
+            <span class="scene-tag">TRANSPORTE EXECUTIVO</span>
+            <h2 class="scene-title">Pontualidade, conforto<br><em>e confiança para seus compromissos.</em></h2>
+            <p class="scene-sub">Ambiente reservado e condução atenta no Volkswagen Nivus.</p>
+          </div>
+        </div>
+
+        <!-- CENA 04 — EVENTOS VIP & BALADAS (DESEMBARQUE NOTURNO) -->
+        <div class="cinematic-scene scene-4" id="scene4">
+          <div class="scene-bg" id="bg4" style="background-image: url('journey-scene-4-evento.jpg');"></div>
+          <div class="scene-vignette"></div>
+          <div class="gold-diagonal-divider" id="divider4"></div>
+          <div class="scene-content content-right" id="content4">
+            <div class="scene-brand-icon">★</div>
+            <span class="scene-tag">EVENTOS VIP & BALADAS</span>
+            <h2 class="scene-title">Chegue com elegância.<br><em>Aproveite cada momento.</em></h2>
+            <p class="scene-sub">Desembarque no tapete vermelho e recepção com atendimento atencioso na madrugada.</p>
+          </div>
+        </div>
+
+        <!-- CENA 05 — ENCERRAMENTO (GRANDE FINAL VW NIVUS NOTURNO) -->
+        <div class="cinematic-scene scene-5" id="scene5">
+          <div class="scene-bg" id="bg5" style="background-image: url('journey-scene-5-carro.jpg');"></div>
+          <div class="scene-vignette"></div>
+          <div class="gold-diagonal-divider" id="divider5"></div>
+          <div class="scene-content content-left" id="content5">
+            <span class="scene-tag">ENCERRAMENTO EXCLUSIVO</span>
+            <h2 class="scene-title">Seu destino merece<br><em>uma experiência exclusiva.</em></h2>
+            <p class="scene-sub">COUTO EXECUTIVO · Transporte particular de alto padrão com Volkswagen Nivus Cinza Moonstone.</p>
+            <a href="https://wa.me/5519983463457?text=Ol%C3%A1,%20Denilson!%20Quero%20agendar%20uma%20experi%C3%AAncia%20com%20a%20Couto%20Executivo."
+               class="scene-cta-btn" target="_blank" rel="noopener">
+              <span>Agendar pelo WhatsApp</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <!-- 4 Pilares de Excelência -->
+            <div class="scene-pillars-grid">
+              <div class="pillar-item"><span class="pillar-icon">🛡️</span><span>Segurança</span></div>
+              <div class="pillar-item"><span class="pillar-icon">⏱️</span><span>Pontualidade</span></div>
+              <div class="pillar-item"><span class="pillar-icon">💎</span><span>Conforto</span></div>
+              <div class="pillar-item"><span class="pillar-icon">⭐</span><span>Confiança</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- SELO CENTRAL DOURADO QUANDO AS PORTAS SE FECHAM -->
-      <div class="door-closed-badge" id="doorClosedBadge">
-        <div class="door-closed-monogram">CE</div>
-        <div class="door-closed-text">COUTO EXECUTIVO</div>
-        <div class="door-closed-sub">Embarque Confirmado</div>
-      </div>
-
-      <!-- CARD INFERIOR REFINADO E LIMPO (SEM BLOQUEAR A FOTO) -->
-      <div class="door-clean-card" id="doorCleanCard">
-        <!-- Injetado via JavaScript dinamicamente -->
-      </div>
-
-      <!-- SETAS DISCRETAS LATERAIS -->
-      <button type="button" class="door-arrow-btn door-arrow-left" onclick="prevDoorScenario()" aria-label="Anterior">‹</button>
-      <button type="button" class="door-arrow-btn door-arrow-right" onclick="nextDoorScenario()" aria-label="Próximo">›</button>
-
-      <!-- INDICADORES DISCRETOS (5 BARRAS) -->
-      <div class="door-indicators-bar" id="doorIndicators">
-        <button type="button" class="door-bar-dot active" onclick="selectDoorScenario(0)" aria-label="Aeroporto"></button>
-        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(1)" aria-label="Balada"></button>
-        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(2)" aria-label="Casamento"></button>
-        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(3)" aria-label="Rodeio"></button>
-        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(4)" aria-label="Corporativo"></button>
+      <!-- Indicador Lateral de Progresso (5 traços) -->
+      <div class="cinematic-progress-bar" id="cinematicProgress">
+        <div class="progress-segment active" data-step="0"></div>
+        <div class="progress-segment" data-step="1"></div>
+        <div class="progress-segment" data-step="2"></div>
+        <div class="progress-segment" data-step="3"></div>
+        <div class="progress-segment" data-step="4"></div>
       </div>
     </div>
   </section>
@@ -1274,207 +1396,188 @@
       }
     }
 
-    /* ---------- LÓGICA DO SHOWCASE COM O VW NIVUS REAL E DENILSON COUTO ---------- */
-    const doorScenarios = [
-      {
-        icon: "✈️",
-        image: "scene-1-aeroporto.jpg",
-        pill: "AEROPORTO EXECUTIVO",
-        title: "Mais que transporte, uma experiência executiva.",
-        sub: "Conforto, segurança e pontualidade em cada detalhe.",
-        cta: "Agendar pelo WhatsApp →",
-        msg: "Olá, Denilson! Gostaria de agendar transporte executivo no aeroporto."
-      },
-      {
-        icon: "💍",
-        image: "scene-2-casamento.jpg",
-        pill: "CASAMENTOS & NOIVAS",
-        title: "Momentos especiais merecem um cuidado especial.",
-        sub: "O motorista abrindo a porta com cordialidade para a noiva desembarcar no altar.",
-        cta: "Agendar Carro para Casamento →",
-        msg: "Olá, Denilson! Gostaria de consultar agendamento para Casamento / Noiva."
-      },
-      {
-        icon: "💼",
-        image: "scene-3-volante.jpg",
-        pill: "TRANSPORTE EXECUTIVO",
-        title: "Pontualidade, conforto e confiança para seus compromissos.",
-        sub: "Ambiente reservado e condução atenta no Volkswagen Nivus.",
-        cta: "Consultar Atendimento Corporativo →",
-        msg: "Olá, Denilson! Gostaria de agendar transporte executivo corporativo."
-      },
-      {
-        icon: "🍸",
-        image: "scene-4-evento.jpg",
-        pill: "EVENTOS VIP & BALADAS",
-        title: "Chegue com elegância. Aproveite cada momento.",
-        sub: "Desembarque no tapete vermelho e recepção com atendimento atencioso na madrugada.",
-        cta: "Agendar Transporte Noturno →",
-        msg: "Olá, Denilson! Gostaria de agendar transporte para evento / balada."
-      },
-      {
-        icon: "🏆",
-        image: "scene-5-carro.jpg",
-        pill: "ENCERRAMENTO EXCLUSIVO",
-        title: "Seu destino merece uma experiência exclusiva.",
-        sub: "COUTO EXECUTIVO · Transporte particular de alto padrão com Volkswagen Nivus Cinza Moonstone.",
-        cta: "AGENDAR PELO WHATSAPP →",
-        msg: "Olá, Denilson! Quero agendar uma experiência com a Couto Executivo."
+    
+    /* ========================================================
+       COUTO EXECUTIVO — CINEMATIC JOURNEY 3D (GSAP + SCROLLTRIGGER)
+       Implementação rigorosa das 7 Técnicas Obrigatórias:
+       1. ScrollTrigger Pin: Fixa o viewport enquanto a narrativa evolui
+       2. GSAP Scrub: Sincroniza zoom, máscaras e textos com a rolagem
+       3. Camera Dolly: Aproximação e afastamento cinematográfico
+       4. Match Cut: Conexão contínua entre momentos
+       5. Mask Transition: Transição diagonal com corte e filete dourado luminoso
+       6. Parallax 3D: Camadas de profundidade espacial
+       7. Crossfade: Mistura gradual suave
+       ======================================================== */
+    (function initCinematicJourney3D() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn('GSAP ou ScrollTrigger não carregados ainda, aguardando...');
+        window.addEventListener('load', initCinematicJourney3D);
+        return;
       }
-    ];
 
-    let currentDoorIndex = 0;
-    let doorTimer = null;
-    let isDoorTransitioning = false;
-    const SCENARIO_DURATION = 3200; // ~3.2s automático contínuo
+      gsap.registerPlugin(ScrollTrigger);
 
-    function renderDoorContent(index) {
-      const s = doorScenarios[index];
-      const container = document.getElementById('doorCleanCard');
-      const bgImg = document.getElementById('doorBgImage');
-      if (!container || !bgImg) return;
+      const section = document.getElementById('inicio');
+      const pinStage = document.getElementById('cinematicPin');
+      if (!section || !pinStage) return;
 
-      bgImg.style.backgroundImage = `url('${s.image}')`;
-      const waUrl = `https://wa.me/5519983463457?text=${encodeURIComponent(s.msg)}`;
-      container.innerHTML = `
-        <div style="max-width: 680px;">
-          <div class="door-card-pill">
-            <span class="badge-dot"></span>
-            <span>${s.pill}</span>
-          </div>
-          <h2 class="door-card-title">${s.icon} ${s.title}</h2>
-          <p class="door-card-sub">${s.sub}</p>
-        </div>
-        <div>
-          <a href="${waUrl}" target="_blank" rel="noopener" class="door-clean-btn" style="white-space: nowrap;">
-            ${s.cta}
-          </a>
-        </div>
-      `;
+      const scenes = [
+        { el: document.getElementById('scene1'), bg: document.getElementById('bg1'), content: document.getElementById('content1'), divider: null },
+        { el: document.getElementById('scene2'), bg: document.getElementById('bg2'), content: document.getElementById('content2'), divider: document.getElementById('divider2') },
+        { el: document.getElementById('scene3'), bg: document.getElementById('bg3'), content: document.getElementById('content3'), divider: document.getElementById('divider3') },
+        { el: document.getElementById('scene4'), bg: document.getElementById('bg4'), content: document.getElementById('content4'), divider: document.getElementById('divider4') },
+        { el: document.getElementById('scene5'), bg: document.getElementById('bg5'), content: document.getElementById('content5'), divider: document.getElementById('divider5') }
+      ];
 
-      // Atualiza barrinhas indicadoras
-      document.querySelectorAll('.door-bar-dot').forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === index);
+      const counterEl = document.getElementById('currentStepNum');
+      const segments = document.querySelectorAll('.progress-segment');
+
+      // Estado inicial das cenas
+      // Cena 1 visível por padrão
+      gsap.set(scenes[0].el, { opacity: 1, zIndex: 1 });
+      gsap.set(scenes[0].bg, { scale: 1.0, y: 0 });
+      gsap.set(scenes[0].content, { opacity: 1, y: 0 });
+
+      // Cenas 2 a 5 ocultas com máscara diagonal inicial abaixo da tela
+      for (let i = 1; i < scenes.length; i++) {
+        const s = scenes[i];
+        const isOdd = i % 2 === 1; // Alternância diagonal
+        const initPolygon = isOdd
+          ? 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)'
+          : 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)';
+
+        gsap.set(s.el, { 
+          opacity: 1, 
+          zIndex: i + 1,
+          clipPath: initPolygon,
+          webkitClipPath: initPolygon
+        });
+        gsap.set(s.bg, { scale: 1.15, y: 20 });
+        gsap.set(s.content, { opacity: 0, y: 30 });
+        if (s.divider) {
+          gsap.set(s.divider, { opacity: 0, top: '100%' });
+        }
+      }
+
+      // Master Timeline vinculada ao ScrollTrigger
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: pinStage,
+          scrub: 0.5,
+          onUpdate: (self) => {
+            const prog = self.progress;
+            const activeIdx = Math.min(Math.floor(prog * 5), 4);
+            if (counterEl) {
+              counterEl.textContent = `0${activeIdx + 1}`;
+            }
+            segments.forEach((seg, idx) => {
+              seg.classList.toggle('active', idx === activeIdx);
+            });
+          }
+        }
       });
-    }
 
-    function triggerDoorTransition(nextIndex) {
-      if (isDoorTransitioning) return;
-      isDoorTransitioning = true;
-      const stage = document.getElementById('doorStage');
-      if (!stage) return;
+      // Transição Cena 1 -> Cena 2 (0.00 a 0.25)
+      // Cena 1: Camera Dolly zoom in
+      tl.to(scenes[0].bg, { scale: 1.08, y: -15, ease: 'none', duration: 1 }, 0);
+      tl.to(scenes[0].content, { opacity: 0, y: -25, ease: 'power1.in', duration: 0.35 }, 0.65);
 
-      // 1. Fecha as portas (0.16s)
-      stage.classList.add('closing');
+      // Cena 2: Transição Diagonal (Mask Transition) + Dolly + Text Reveal
+      tl.to(scenes[1].el, {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut',
+        duration: 0.9
+      }, 0.55);
 
-      setTimeout(() => {
-        currentDoorIndex = nextIndex;
-        renderDoorContent(currentDoorIndex);
-
-        // 2. Abre as portas revelando o novo cenário com Denilson e o cliente feliz (0.16s)
-        setTimeout(() => {
-          stage.classList.remove('closing');
-          isDoorTransitioning = false;
-        }, 160);
-      }, 160);
-    }
-
-    function selectDoorScenario(index) {
-      if (index === currentDoorIndex) return;
-      triggerDoorTransition(index);
-    }
-
-    function nextDoorScenario() {
-      const next = (currentDoorIndex + 1) % doorScenarios.length;
-      triggerDoorTransition(next);
-    }
-
-    function prevDoorScenario() {
-      const prev = (currentDoorIndex - 1 + doorScenarios.length) % doorScenarios.length;
-      triggerDoorTransition(prev);
-    }
-
-    function startDoorAutoPlay() {
-      if (doorTimer) clearInterval(doorTimer);
-      doorTimer = setInterval(nextDoorScenario, SCENARIO_DURATION);
-    }
-
-    // Inicialização automática garantida
-    renderDoorContent(0);
-    startDoorAutoPlay();
-
-    // Sincronização automática com o scroll da página no modo Desktop
-    window.addEventListener('scroll', () => {
-      const hero = document.getElementById('inicio');
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      const heroHeight = hero.offsetHeight - window.innerHeight;
-      if (heroHeight <= 0) return;
-
-      const scrolled = -rect.top;
-      if (scrolled >= 0 && scrolled <= heroHeight) {
-        const progress = scrolled / heroHeight;
-        const targetIndex = Math.min(
-          Math.floor(progress * doorScenarios.length),
-          doorScenarios.length - 1
+      if (scenes[1].divider) {
+        tl.fromTo(scenes[1].divider, 
+          { opacity: 0, top: '100%', rotate: -8 },
+          { opacity: 1, top: '0%', rotate: -8, ease: 'power1.inOut', duration: 0.9 },
+          0.55
         );
-        if (targetIndex !== currentDoorIndex && !isDoorTransitioning) {
-          triggerDoorTransition(targetIndex);
-        }
+        tl.to(scenes[1].divider, { opacity: 0, duration: 0.2 }, 1.35);
       }
-    }, { passive: true });
 
+      tl.to(scenes[1].bg, { scale: 1.02, y: 0, ease: 'none', duration: 1 }, 0.55);
+      tl.to(scenes[1].content, { opacity: 1, y: 0, ease: 'power1.out', duration: 0.4 }, 0.95);
 
-    // Suporte a deslizar com o dedo no celular (Swipe vertical ou horizontal)
-    let touchStartX = 0;
-    let touchStartY = 0;
-    const stageEl = document.getElementById('doorStage');
-    if (stageEl) {
-      stageEl.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
+      // Transição Cena 2 -> Cena 3 (1.50 a 2.50)
+      tl.to(scenes[1].bg, { scale: 1.10, y: -15, ease: 'none', duration: 1 }, 1.5);
+      tl.to(scenes[1].content, { opacity: 0, y: -25, ease: 'power1.in', duration: 0.35 }, 1.85);
 
-      stageEl.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const touchEndY = e.changedTouches[0].clientY;
-        const diffX = touchEndX - touchStartX;
-        const diffY = touchEndY - touchStartY;
+      tl.to(scenes[2].el, {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut',
+        duration: 0.9
+      }, 1.75);
 
-        // Se deslizou para cima/baixo ou esquerda/direita
-        if (Math.abs(diffY) > 35 || Math.abs(diffX) > 35) {
-          if (diffY < -35 || diffX < -35) {
-            nextDoorScenario();
-          } else if (diffY > 35 || diffX > 35) {
-            prevDoorScenario();
-          }
-        }
-      }, { passive: true });
-    }
+      if (scenes[2].divider) {
+        tl.fromTo(scenes[2].divider,
+          { opacity: 0, top: '100%', rotate: 8 },
+          { opacity: 1, top: '0%', rotate: 8, ease: 'power1.inOut', duration: 0.9 },
+          1.75
+        );
+        tl.to(scenes[2].divider, { opacity: 0, duration: 0.2 }, 2.55);
+      }
 
-    // Suporte a scroll com a roda do mouse / touchpad na tela inicial
-    let lastWheelTime = 0;
-    const heroSectionEl = document.getElementById('inicio');
-    if (heroSectionEl) {
-      heroSectionEl.addEventListener('wheel', (e) => {
-        const now = Date.now();
-        if (now - lastWheelTime < 500) return;
+      tl.to(scenes[2].bg, { scale: 1.02, y: 0, ease: 'none', duration: 1 }, 1.75);
+      tl.to(scenes[2].content, { opacity: 1, y: 0, ease: 'power1.out', duration: 0.4 }, 2.15);
 
-        if (e.deltaY > 25) {
-          if (currentDoorIndex < doorScenarios.length - 1) {
-            e.preventDefault();
-            nextDoorScenario();
-            lastWheelTime = now;
-          }
-        } else if (e.deltaY < -25) {
-          if (currentDoorIndex > 0) {
-            e.preventDefault();
-            prevDoorScenario();
-            lastWheelTime = now;
-          }
-        }
-      }, { passive: false });
-    }
+      // Transição Cena 3 -> Cena 4 (2.70 a 3.70)
+      tl.to(scenes[2].bg, { scale: 1.10, y: -15, ease: 'none', duration: 1 }, 2.7);
+      tl.to(scenes[2].content, { opacity: 0, y: -25, ease: 'power1.in', duration: 0.35 }, 3.05);
+
+      tl.to(scenes[3].el, {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut',
+        duration: 0.9
+      }, 2.95);
+
+      if (scenes[3].divider) {
+        tl.fromTo(scenes[3].divider,
+          { opacity: 0, top: '100%', rotate: -8 },
+          { opacity: 1, top: '0%', rotate: -8, ease: 'power1.inOut', duration: 0.9 },
+          2.95
+        );
+        tl.to(scenes[3].divider, { opacity: 0, duration: 0.2 }, 3.75);
+      }
+
+      tl.to(scenes[3].bg, { scale: 1.02, y: 0, ease: 'none', duration: 1 }, 2.95);
+      tl.to(scenes[3].content, { opacity: 1, y: 0, ease: 'power1.out', duration: 0.4 }, 3.35);
+
+      // Transição Cena 4 -> Cena 5 (3.90 a 4.90)
+      tl.to(scenes[3].bg, { scale: 1.10, y: -15, ease: 'none', duration: 1 }, 3.9);
+      tl.to(scenes[3].content, { opacity: 0, y: -25, ease: 'power1.in', duration: 0.35 }, 4.25);
+
+      tl.to(scenes[4].el, {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        ease: 'power1.inOut',
+        duration: 0.9
+      }, 4.15);
+
+      if (scenes[4].divider) {
+        tl.fromTo(scenes[4].divider,
+          { opacity: 0, top: '100%', rotate: 8 },
+          { opacity: 1, top: '0%', rotate: 8, ease: 'power1.inOut', duration: 0.9 },
+          4.15
+        );
+        tl.to(scenes[4].divider, { opacity: 0, duration: 0.2 }, 4.95);
+      }
+
+      // Camera Dolly Out no encerramento (revelando o Nivus completo)
+      tl.to(scenes[4].bg, { scale: 1.0, y: 0, ease: 'none', duration: 1 }, 4.15);
+      tl.to(scenes[4].content, { opacity: 1, y: 0, ease: 'power1.out', duration: 0.4 }, 4.55);
+
+      // Recalcular ScrollTrigger após carregamento de todas as imagens
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    })();
 
     function handleQuoteSubmit(e) {
       e.preventDefault();
