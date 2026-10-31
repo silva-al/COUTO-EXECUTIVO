@@ -644,14 +644,24 @@
     .door-clean-card {
       position: relative;
       z-index: 5;
-      padding: 16px 20px 32px;
-      max-width: 680px;
+      padding: 14px 24px 28px;
+      max-width: 1000px;
+      width: 100%;
       margin: 0 auto;
-      text-align: center;
+      text-align: left;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      background: transparent;
+    }
+    @media (max-width: 768px) {
+      .door-clean-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 24px;
+      }
     }
 
     .door-card-pill {
@@ -1336,15 +1346,19 @@
       bgImg.style.backgroundImage = `url('${s.image}')`;
       const waUrl = `https://wa.me/5519983463457?text=${encodeURIComponent(s.msg)}`;
       container.innerHTML = `
-        <div class="door-card-pill">
-          <span class="badge-dot"></span>
-          <span>${s.pill}</span>
+        <div style="max-width: 680px;">
+          <div class="door-card-pill">
+            <span class="badge-dot"></span>
+            <span>${s.pill}</span>
+          </div>
+          <h2 class="door-card-title">${s.icon} ${s.title}</h2>
+          <p class="door-card-sub">${s.sub}</p>
         </div>
-        <h2 class="door-card-title">${s.icon} ${s.title}</h2>
-        <p class="door-card-sub">${s.sub}</p>
-        <a href="${waUrl}" target="_blank" rel="noopener" class="door-clean-btn">
-          ${s.cta}
-        </a>
+        <div>
+          <a href="${waUrl}" target="_blank" rel="noopener" class="door-clean-btn" style="white-space: nowrap;">
+            ${s.cta}
+          </a>
+        </div>
       `;
 
       // Atualiza barrinhas indicadoras
