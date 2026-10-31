@@ -200,7 +200,7 @@
       align-items: center;
       gap: 9px;
       min-width: 0;
-      flex-shrink: 1;
+      flex-shrink: 0;
     }
 
     .brand-logo-symbol {
@@ -215,11 +215,10 @@
 
     .brand-text {
       font-family: var(--font-heading);
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       color: var(--ivory);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      flex-shrink: 0;
     }
 
     .brand-text strong {
@@ -593,6 +592,43 @@
 
     /* ---------- RESPONSIVO CELULAR ---------- */
     @media (max-width: 820px) {
+      .nav {
+        padding: 8px 12px;
+      }
+
+      .nav-inner {
+        gap: 6px;
+      }
+
+      .brand {
+        gap: 7px;
+        flex-shrink: 0;
+      }
+
+      .brand-logo-symbol {
+        width: 32px;
+        height: 32px;
+      }
+
+      .brand-text {
+        font-size: 0.94rem;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: clip;
+        flex-shrink: 0;
+      }
+
+      .nav-cta {
+        padding: 7px 11px;
+        font-size: 0.68rem;
+        gap: 4px;
+      }
+
+      .nav-ig-btn {
+        width: 31px !important;
+        height: 31px !important;
+      }
+
       .hero-grid {
         display: flex;
         flex-direction: column-reverse;
@@ -664,6 +700,22 @@
         border-radius: 5px;
       }
     }
+
+    @media (max-width: 375px) {
+      .brand-text {
+        font-size: 0.86rem;
+      }
+
+      .nav-cta {
+        padding: 6px 9px;
+        font-size: 0.65rem;
+      }
+
+      .brand-logo-symbol {
+        width: 28px;
+        height: 28px;
+      }
+    }
   </style>
 </head>
 
@@ -679,7 +731,7 @@
 
       <div style="display:flex; align-items:center; gap:8px;">
         <a href="https://www.instagram.com/couto.executivo" target="_blank" rel="noopener"
-          aria-label="Instagram Couto Executivo"
+          aria-label="Instagram Couto Executivo" class="nav-ig-btn"
           style="display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:4px; border:1px solid var(--line-gold); background:var(--navy-card); color:var(--gold);">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
