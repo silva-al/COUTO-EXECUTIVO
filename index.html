@@ -483,102 +483,195 @@
       text-transform: uppercase;
     }
 
-    /* ---------- SHOWCASE DINÂMICO EMBARQUE EXECUTIVO (PORTAS ABRINDO E FECHANDO) ---------- */
-    .door-showcase-container {
+    /* ---------- TELA INICIAL: EXPERIÊNCIA DE EMBARQUE EXECUTIVO (DENILSON COUTO) ---------- */
+    .hero-showcase-section {
       position: relative;
-      background: linear-gradient(180deg, #101621 0%, #070a0e 100%);
-      border: 1px solid var(--line-gold);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-      margin-top: 24px;
       width: 100%;
-    }
-
-    .door-nav-tabs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding: 10px;
-      background: rgba(5, 7, 10, 0.85);
-      border-bottom: 1px solid var(--line);
-      scrollbar-width: none;
-    }
-    .door-nav-tabs::-webkit-scrollbar { display: none; }
-
-    .door-tab-btn {
-      flex: 1 1 0;
-      min-width: 110px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 8px 10px;
-      border-radius: 5px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--ivory-dim);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .door-tab-btn:hover {
-      color: var(--ivory);
-      background: rgba(201, 155, 106, 0.12);
-    }
-
-    .door-tab-btn.active {
-      color: #070a0e;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      border-color: var(--gold);
-      box-shadow: 0 2px 10px rgba(201, 155, 106, 0.35);
-    }
-
-    /* ---------- CARD DE AUTORIDADE DO COUTO NO HERO ---------- */
-    .hero-chauffeur-card {
-      background: var(--navy-card);
-      border: 1px solid var(--line-gold);
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      height: calc(100vh - 60px);
+      min-height: 520px;
+      max-height: 860px;
+      padding-top: 56px;
+      background: #070a0e;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 440px;
-      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .hero-showcase-section {
+        height: calc(100vh - 72px);
+        min-height: 580px;
+        max-height: 880px;
+        padding-top: 72px;
+      }
     }
 
-    .hero-chauffeur-img-wrap {
+    .door-showcase-stage {
       position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: #05070a;
-    }
-
-    .hero-chauffeur-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      display: block;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: #05070a;
+      touch-action: pan-y;
+      user-select: none;
+      perspective: 1400px;
+      perspective-origin: center center;
     }
 
-    .hero-chauffeur-pill {
+    .door-bg-image {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
+      inset: 0;
+      background-size: cover;
+      background-position: center 30%;
+      transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+      transform: scale(1.03);
+    }
+    .door-showcase-stage.closing .door-bg-image {
+      transform: scale(0.97);
+    }
+
+    .door-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        rgba(7, 10, 14, 0.12) 0%, 
+        rgba(7, 10, 14, 0.22) 42%, 
+        rgba(7, 10, 14, 0.78) 75%, 
+        rgba(7, 10, 14, 0.98) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* As duas portas executivas em ROLAGEM 3D (Abertura e Fechamento Realista) */
+    .executive-door {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50.2%;
+      z-index: 12;
+      background: linear-gradient(135deg, #18202d 0%, #0d1219 50%, #06080c 100%);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
+      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      backface-visibility: hidden;
+    }
+
+    .executive-door-left {
+      left: 0;
+      transform-origin: left center;
+      border-right: 2px solid var(--gold);
+      transform: rotateY(-92deg);
+      opacity: 0;
+      justify-content: flex-end;
+      padding-right: 14px;
+    }
+
+    .executive-door-right {
+      right: 0;
+      transform-origin: right center;
+      border-left: 2px solid var(--gold);
+      transform: rotateY(92deg);
+      opacity: 0;
+      justify-content: flex-start;
+      padding-left: 14px;
+    }
+
+    /* ROLAGEM 3D: Quando as portas se fecham no centro */
+    .door-showcase-stage.closing .executive-door-left {
+      transform: rotateY(0deg);
+      opacity: 1;
+    }
+    .door-showcase-stage.closing .executive-door-right {
+      transform: rotateY(0deg);
+      opacity: 1;
+    }
+
+    /* Maçaneta cromada e dourada com reflexo 3D */
+    .door-handle {
+      width: 7px;
+      height: 52px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--gold) 50%, #8a5a34 100%);
+      box-shadow: 0 0 14px rgba(229, 184, 105, 0.8), inset 0 1px 1px #fff;
+    }
+
+    /* Selo central dourado quando as portas fecham */
+    .door-closed-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      z-index: 15;
+      background: rgba(7, 10, 14, 0.95);
+      border: 1.5px solid var(--gold);
+      border-radius: 16px;
+      padding: 16px 26px;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(201, 155, 106, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .door-showcase-stage.closing .door-closed-badge {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .door-closed-monogram {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .door-closed-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--ivory);
+      text-transform: uppercase;
+    }
+
+    .door-closed-sub {
+      font-size: 0.65rem;
+      color: var(--gold);
+      margin-top: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Card inferior limpo & elegante (não tampa as pessoas nem a foto) */
+    .door-clean-card {
+      position: relative;
+      z-index: 5;
+      padding: 16px 20px 32px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .door-card-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(7, 10, 14, 0.9);
+      background: rgba(7, 10, 14, 0.85);
       border: 1px solid var(--line-gold);
-      padding: 5px 12px;
+      padding: 4px 14px;
       border-radius: 999px;
-      font-size: 0.70rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -586,8 +679,112 @@
       backdrop-filter: blur(8px);
     }
 
-    .hero-chauffeur-meta {
-      padding: 4px 6px 6px;
+    .door-card-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.45rem, 3.8vw, 2.1rem);
+      font-weight: 700;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin: 0;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+    }
+
+    .door-card-sub {
+      font-size: clamp(0.82rem, 1.8vw, 0.92rem);
+      color: var(--ivory-dim);
+      line-height: 1.4;
+      margin: 0;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95);
+      max-width: 520px;
+    }
+
+    .door-clean-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: #070a0e;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(201, 155, 106, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 6px;
+      text-decoration: none;
+    }
+    .door-clean-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(201, 155, 106, 0.6);
+    }
+
+    /* Setas laterais de navegação discretas */
+    .door-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 6;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(7, 10, 14, 0.65);
+      border: 1px solid var(--line-gold);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+    .door-arrow-btn:hover {
+      background: var(--gold);
+      color: #070a0e;
+    }
+    .door-arrow-left { left: 14px; }
+    .door-arrow-right { right: 14px; }
+
+    @media (max-width: 640px) {
+      .door-arrow-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+      }
+      .door-arrow-left { left: 8px; }
+      .door-arrow-right { right: 8px; }
+    }
+
+    /* 5 barrinhas indicadoras na base */
+    .door-indicators-bar {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .door-bar-dot {
+      width: 22px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.25s ease;
+    }
+
+    .door-bar-dot.active {
+      width: 38px;
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(201, 155, 106, 0.7);
     }
 
     /* ---------- SEÇÃO DE VÍDEO OFICIAL (GRAND FINALE) ---------- */
@@ -596,267 +793,6 @@
       background: linear-gradient(180deg, var(--navy-dark) 0%, #070a0e 100%);
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-    }
-
-    .door-stage {
-      position: relative;
-      min-height: 420px;
-      padding: 24px 20px 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      border-radius: 0 0 10px 10px;
-      background: #05070a;
-    }
-
-    .door-bg-image {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: opacity 0.2s ease, transform 0.3s ease;
-      z-index: 1;
-    }
-
-    .door-bg-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(7, 10, 14, 0.25) 0%, rgba(7, 10, 14, 0.72) 45%, rgba(7, 10, 14, 0.96) 100%);
-      z-index: 2;
-    }
-
-    /* Badge do Couto Chauffeur no topo do slide */
-    .door-chauffeur-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      z-index: 5;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(7, 10, 14, 0.88);
-      border: 1px solid var(--line-gold);
-      backdrop-filter: blur(8px);
-      padding: 4px 12px 4px 5px;
-      border-radius: 999px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
-    }
-
-    .door-chauffeur-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--gold);
-    }
-
-    .door-chauffeur-text {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--ivory);
-      line-height: 1.1;
-    }
-
-    .door-chauffeur-sub {
-      font-size: 0.62rem;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    /* As duas portas de carro executivo (super rápidas) */
-    .executive-door {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 50.5%;
-      z-index: 10;
-      background: linear-gradient(135deg, #141923 0%, #06080c 100%);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.98);
-      transition: transform 0.13s cubic-bezier(0.2, 0.9, 0.3, 1);
-      display: flex;
-      align-items: center;
-      pointer-events: none;
-    }
-
-    .executive-door-left {
-      left: 0;
-      border-right: 2px solid var(--gold);
-      transform: translateX(-101%);
-      justify-content: flex-end;
-      padding-right: 14px;
-    }
-
-    .executive-door-right {
-      right: 0;
-      border-left: 2px solid var(--gold);
-      transform: translateX(101%);
-      justify-content: flex-start;
-      padding-left: 14px;
-    }
-
-    /* Animação quando a porta fecha */
-    .door-stage.closing .executive-door-left {
-      transform: translateX(0%);
-    }
-    .door-stage.closing .executive-door-right {
-      transform: translateX(0%);
-    }
-
-    /* Maçaneta cromada dourada de luxo */
-    .door-handle {
-      width: 6px;
-      height: 44px;
-      border-radius: 3px;
-      background: linear-gradient(180deg, #fff 0%, var(--gold) 50%, var(--gold-dark) 100%);
-      box-shadow: 0 0 10px rgba(229, 184, 105, 0.6);
-    }
-
-    .door-closed-badge {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.85);
-      z-index: 15;
-      background: rgba(7, 10, 14, 0.96);
-      border: 1px solid var(--gold);
-      border-radius: 30px;
-      padding: 7px 16px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-      pointer-events: none;
-      box-shadow: 0 0 15px rgba(201, 155, 106, 0.4);
-    }
-
-    .door-stage.closing .door-closed-badge {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    /* Conteúdo revelado com as portas abertas */
-    .door-content-wrap {
-      position: relative;
-      z-index: 2;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .door-content-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .door-content-title {
-      font-family: var(--font-heading);
-      font-size: clamp(1.28rem, 2.8vw, 1.7rem);
-      color: var(--ivory);
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-
-    .door-content-desc {
-      color: var(--ivory-dim);
-      font-size: 0.88rem;
-      line-height: 1.5;
-      margin-bottom: 14px;
-      max-width: 640px;
-    }
-
-    .door-features-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .door-feature-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(201, 155, 106, 0.1);
-      border: 1px solid rgba(201, 155, 106, 0.3);
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 0.74rem;
-      color: var(--ivory);
-    }
-
-    .door-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      color: #070a0e;
-      padding: 10px 18px;
-      border-radius: 5px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 14px rgba(201, 155, 106, 0.3);
-      transition: transform 0.2s ease;
-      width: fit-content;
-    }
-    .door-cta-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Barra inferior de progresso & setas */
-    .door-footer-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 8px 16px;
-      background: rgba(5, 7, 10, 0.9);
-      border-top: 1px solid var(--line);
-    }
-
-    .door-ctrl-btn {
-      background: none;
-      border: 1px solid var(--line-gold);
-      color: var(--gold);
-      width: 28px;
-      height: 28px;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .door-ctrl-btn:hover {
-      background: var(--gold);
-      color: #070a0e;
-    }
-
-    .door-progress-track {
-      flex: 1;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .door-progress-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--gold);
-      transition: width 0.1s linear;
     }
 
     /* ---------- COTAÇÃO RÁPIDA (100% DENTRO DA TELA) ---------- */
@@ -1126,120 +1062,46 @@
     </div>
   </header>
 
-  <!-- CAPA HERO -->
-  <section class="hero-wrapper" id="inicio">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+  <!-- TELA INICIAL: EXPERIÊNCIA DE EMBARQUE EXECUTIVO COM DENILSON COUTO (PORTAS ABRINDO E FECHANDO) -->
+  <section class="hero-showcase-section" id="inicio">
+    <div class="door-showcase-stage" id="doorStage">
+      <!-- FOTO PRINCIPAL LIMPA: CLIENTE FELIZ + MOTORISTA DENILSON COUTO NA PORTA -->
+      <div class="door-bg-image" id="doorBgImage"></div>
+      <div class="door-bg-overlay"></div>
 
-    <div class="wrap hero-content">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span>Somente com Hora Marcada</span>
-          </div>
-
-          <h1 class="hero-title">
-            Transporte executivo com <em>pontualidade</em> e discrição.
-          </h1>
-
-          <p class="hero-subtitle">
-            Atendimento exclusivo sob agendamento para aeroportos (Viracopos, Guarulhos e Congonhas),
-            casamentos, baladas, rodeios e viagens particulares.
-          </p>
-
-          <div class="hero-actions">
-            <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo."
-              class="btn-primary" target="_blank" rel="noopener">
-              Agendar no WhatsApp
-            </a>
-            <a href="#servicos" class="btn-ghost">
-              Ver Ocasiões & Serviços
-            </a>
-          </div>
-        </div>
-
-        <!-- CARD DE AUTORIDADE COM FOTO DO COUTO -->
-        <div class="hero-chauffeur-card">
-          <div class="hero-chauffeur-img-wrap">
-            <img src="foto-couto.jpg" alt="Couto Executivo Chauffeur" class="hero-chauffeur-img">
-            <div class="hero-chauffeur-pill">
-              <span class="badge-dot"></span>
-              <span>Motorista Particular Oficial</span>
-            </div>
-          </div>
-          <div class="hero-chauffeur-meta">
-            <div style="font-weight: 700; font-size: 0.95rem; color: var(--ivory);">Atendimento Personalizado</div>
-            <div style="font-size: 0.78rem; color: var(--gold); margin-top: 2px;">★★★★★ 5.0 • Excelência em Campinas, Hortolândia & SP</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIÊNCIA A BORDO / EMBARQUE EXECUTIVO (PORTAS ABRINDO E FECHANDO) -->
-  <section id="servicos">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Embarque Executivo • O Momento de Cada Cliente</span>
-        <h2>Para Onde Você Quer Ir?</h2>
-        <p>Deslize para sentir a experiência do Couto abrindo a porta para a sua ocasião.</p>
+      <!-- PORTA ESQUERDA DE CARRO EXECUTIVO -->
+      <div class="executive-door executive-door-left">
+        <div class="door-handle"></div>
       </div>
 
-      <div class="door-showcase-container" id="doorShowcase">
-        <!-- ABAS DOS 5 PERFIS DE CLIENTE -->
-        <div class="door-nav-tabs">
-          <button type="button" class="door-tab-btn active" data-index="0" onclick="selectDoorScenario(0)">✈️ Aeroporto</button>
-          <button type="button" class="door-tab-btn" data-index="1" onclick="selectDoorScenario(1)">🍸 Balada & Noite</button>
-          <button type="button" class="door-tab-btn" data-index="2" onclick="selectDoorScenario(2)">💍 Casamento</button>
-          <button type="button" class="door-tab-btn" data-index="3" onclick="selectDoorScenario(3)">🤠 Rodeio & Festas</button>
-          <button type="button" class="door-tab-btn" data-index="4" onclick="selectDoorScenario(4)">⭐ Corporativo & Viagens</button>
-        </div>
+      <!-- PORTA DIREITA DE CARRO EXECUTIVO -->
+      <div class="executive-door executive-door-right">
+        <div class="door-handle"></div>
+      </div>
 
-        <!-- PALCO DAS PORTAS EXECUTIVAS -->
-        <div class="door-stage" id="doorStage">
-          <!-- IMAGEM DE FUNDO DA OCASIÃO -->
-          <div class="door-bg-image" id="doorBgImage"></div>
-          <div class="door-bg-overlay"></div>
+      <!-- SELO CENTRAL DOURADO QUANDO AS PORTAS SE FECHAM -->
+      <div class="door-closed-badge">
+        <div class="door-closed-monogram">CE</div>
+        <div class="door-closed-text">COUTO EXECUTIVO</div>
+        <div class="door-closed-sub">Embarque Confirmado</div>
+      </div>
 
-          <!-- BADGE DO COUTO CHAUFFEUR SORRINDO NA PORTA -->
-          <div class="door-chauffeur-badge">
-            <img src="couto-avatar.jpg" alt="Couto Chauffeur" class="door-chauffeur-avatar">
-            <div>
-              <div class="door-chauffeur-text">Couto Executivo</div>
-              <div class="door-chauffeur-sub">Porta Aberta • Bem-vindo a Bordo</div>
-            </div>
-          </div>
+      <!-- CARD INFERIOR REFINADO E LIMPO (SEM BLOQUEAR A FOTO) -->
+      <div class="door-clean-card" id="doorCleanCard">
+        <!-- Injetado via JavaScript dinamicamente -->
+      </div>
 
-          <!-- PORTA ESQUERDA -->
-          <div class="executive-door executive-door-left">
-            <div class="door-handle"></div>
-          </div>
+      <!-- SETAS DISCRETAS LATERAIS -->
+      <button type="button" class="door-arrow-btn door-arrow-left" onclick="prevDoorScenario()" aria-label="Anterior">‹</button>
+      <button type="button" class="door-arrow-btn door-arrow-right" onclick="nextDoorScenario()" aria-label="Próximo">›</button>
 
-          <!-- PORTA DIREITA -->
-          <div class="executive-door executive-door-right">
-            <div class="door-handle"></div>
-          </div>
-
-          <!-- SELO CENTRAL QUANDO PORTA FECHA -->
-          <div class="door-closed-badge">
-            ✦ Porta Fechada • Partida Garantida ✦
-          </div>
-
-          <!-- CONTEÚDO DINÂMICO REVELADO AO ABRIR -->
-          <div class="door-content-wrap" id="doorContent">
-            <!-- Renderizado via JS -->
-          </div>
-        </div>
-
-        <!-- BARRA INFERIOR DE CONTROLES & PROGRESSO -->
-        <div class="door-footer-bar">
-          <button type="button" class="door-ctrl-btn" onclick="prevDoorScenario()" aria-label="Anterior">‹</button>
-          <div class="door-progress-track">
-            <div class="door-progress-fill" id="doorProgressFill"></div>
-          </div>
-          <button type="button" class="door-ctrl-btn" onclick="nextDoorScenario()" aria-label="Próximo">›</button>
-        </div>
+      <!-- INDICADORES DISCRETOS (5 BARRAS) -->
+      <div class="door-indicators-bar" id="doorIndicators">
+        <button type="button" class="door-bar-dot active" onclick="selectDoorScenario(0)" aria-label="Aeroporto"></button>
+        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(1)" aria-label="Balada"></button>
+        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(2)" aria-label="Casamento"></button>
+        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(3)" aria-label="Rodeio"></button>
+        <button type="button" class="door-bar-dot" onclick="selectDoorScenario(4)" aria-label="Corporativo"></button>
       </div>
     </div>
   </section>
@@ -1411,86 +1273,83 @@
       }
     }
 
-    /* ---------- LÓGICA DO SHOWCASE PORTAS ABRINDO E FECHANDO (SUPER RÁPIDO) ---------- */
+    /* ---------- LÓGICA DO SHOWCASE PORTAS ABRINDO E FECHANDO (DENILSON COUTO) ---------- */
     const doorScenarios = [
       {
         icon: "✈️",
         image: "destino-aeroporto.jpg",
-        tag: "Transfer VIP • Viracopos, Guarulhos & Congonhas",
+        pill: "Viracopos • Guarulhos • Congonhas",
         title: "Indo ao Aeroporto sem Estresse",
-        desc: "Monitoramento de voo em tempo real, pontualidade britânica e auxílio completo com as bagagens. Embarque com calma e tranquilidade.",
-        chips: ["Pontualidade britânica", "Auxílio com malas", "Rota expressa anti-trânsito"],
-        cta: "Agendar Transfer para Aeroporto →",
-        msg: "Olá, Couto Executivo! Gostaria de agendar um Transfer para Aeroporto."
+        sub: "Denilson Couto abrindo a porta para seu embarque com pontualidade britânica e tranquilidade.",
+        cta: "Agendar Transfer de Aeroporto →",
+        msg: "Olá, Couto! Gostaria de agendar um Transfer para Aeroporto."
       },
       {
         icon: "🍸",
         image: "destino-balada.jpg",
-        tag: "Vida Noturna • Baladas, Shows & Jantares VIP",
+        pill: "Noite VIP • Baladas & Jantares",
         title: "Indo na Balada sem se Preocupar",
-        desc: "Curta sua noite com 100% de liberdade. Beba e comemore sem risco de bafômetro ou lei seca. O motorista te deixa na porta e já está a postos na saída.",
-        chips: ["Zero risco com bafômetro", "Carro te esperando na saída", "Discrição e segurança total"],
+        sub: "Curta sua noite com liberdade e zero preocupação com lei seca. Chegada VIP e retorno seguro.",
         cta: "Agendar Ida & Volta de Balada →",
-        msg: "Olá, Couto Executivo! Gostaria de agendar transporte particular para Balada/Festa."
+        msg: "Olá, Couto! Gostaria de agendar transporte particular para Balada/Festa."
       },
       {
         icon: "💍",
         image: "destino-casamento.jpg",
-        tag: "Momento Inesquecível • Noivas & Cerimônias",
+        pill: "Noivas & Momentos Inesquecíveis",
         title: "Indo ao Casamento com Presença",
-        desc: "Chegada triunfal ao altar. Veículo impecavelmente limpo e perfumado, ar-condicionado na temperatura perfeita e motorista com terno alinhado abrindo a porta com cortesia.",
-        chips: ["Espaço amplo p/ vestidos", "Abertura de porta cortês", "Chegada cinematográfica"],
+        sub: "Chegada triunfal ao altar. Motorista Denilson com terno alinhado abrindo a porta com cortesia.",
         cta: "Agendar Carro para Casamento →",
-        msg: "Olá, Couto Executivo! Gostaria de um orçamento para Casamento/Evento Especial."
+        msg: "Olá, Couto! Gostaria de um orçamento para Casamento ou Evento especial."
       },
       {
         icon: "🤠",
         image: "destino-rodeio.jpg",
-        tag: "Grandes Festivais • Barretos, Jaguariúna & Americana",
+        pill: "Barretos • Jaguariúna • Americana",
         title: "Indo ao Rodeio com Conforto VIP",
-        desc: "Aproveite os maiores shows do início ao fim sem perrengue com lama, trânsito ou estacionamento longe. Embarque VIP e retorno seguro para casa de madrugada.",
-        chips: ["Embarque direto no portão", "Sem fila de estacionamento", "Volta garantida de madrugada"],
+        sub: "Aproveite os maiores shows do início ao fim com desembarque direto na portaria principal.",
         cta: "Agendar Transporte para Rodeio →",
-        msg: "Olá, Couto Executivo! Gostaria de transporte exclusivo para Rodeio/Festival."
+        msg: "Olá, Couto! Gostaria de agendar transporte exclusivo para Rodeio/Festival."
       },
       {
         icon: "⭐",
         image: "destino-corporativo.jpg",
-        tag: "Corporativo & Viagens • Reuniões & Diárias",
-        title: "Indo a Compromissos & Viagens Executivas",
-        desc: "Atendimento executivo de alto padrão para reuniões decisivas, visitas técnicas e viagens particulares com discrição absoluta e conforto de primeira classe.",
-        chips: ["Total discrição e sigilo", "Espaço para trabalhar a bordo", "Diárias e viagens pontuais"],
+        pill: "Viagens Executivas & Diárias",
+        title: "Indo a Reuniões & Viagens Particulares",
+        sub: "Pontualidade rigorosa, conforto de primeira classe e discrição absoluta para seus compromissos.",
         cta: "Agendar Atendimento Corporativo →",
-        msg: "Olá, Couto Executivo! Gostaria de consultar atendimento Corporativo/Viagem Executiva."
+        msg: "Olá, Couto! Gostaria de consultar atendimento Corporativo ou Viagem Particular."
       }
     ];
 
     let currentDoorIndex = 0;
-    let doorProgressTimer = null;
-    let doorProgress = 0;
+    let doorTimer = null;
     let isDoorTransitioning = false;
-    const SCENARIO_DURATION = 1900; // ~1.9s ultra rápido, dinâmico e ágil
+    const SCENARIO_DURATION = 2800; // ~2.8s dinâmico e agradável
 
     function renderDoorContent(index) {
       const s = doorScenarios[index];
-      const container = document.getElementById('doorContent');
+      const container = document.getElementById('doorCleanCard');
       const bgImg = document.getElementById('doorBgImage');
       if (!container || !bgImg) return;
 
       bgImg.style.backgroundImage = `url('${s.image}')`;
-      const chipsHtml = s.chips.map(c => `<span class="door-feature-chip">✓ ${c}</span>`).join('');
       const waUrl = `https://wa.me/5519983463457?text=${encodeURIComponent(s.msg)}`;
       container.innerHTML = `
-        <div class="door-content-tag">${s.icon} ${s.tag}</div>
-        <h3 class="door-content-title">${s.title}</h3>
-        <p class="door-content-desc">${s.desc}</p>
-        <div class="door-features-list">${chipsHtml}</div>
-        <a href="${waUrl}" target="_blank" rel="noopener" class="door-cta-btn">
+        <div class="door-card-pill">
+          <span class="badge-dot"></span>
+          <span>${s.pill}</span>
+        </div>
+        <h2 class="door-card-title">${s.icon} ${s.title}</h2>
+        <p class="door-card-sub">${s.sub}</p>
+        <a href="${waUrl}" target="_blank" rel="noopener" class="door-clean-btn">
           ${s.cta}
         </a>
       `;
-      document.querySelectorAll('.door-tab-btn').forEach((btn, idx) => {
-        btn.classList.toggle('active', idx === index);
+
+      // Atualiza barrinhas indicadoras
+      document.querySelectorAll('.door-bar-dot').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
       });
     }
 
@@ -1500,21 +1359,19 @@
       const stage = document.getElementById('doorStage');
       if (!stage) return;
 
-      // 1. Fecha as portas (0.13s)
+      // 1. Fecha as portas (0.16s)
       stage.classList.add('closing');
 
       setTimeout(() => {
         currentDoorIndex = nextIndex;
         renderDoorContent(currentDoorIndex);
 
-        // 2. Abre as portas revelando o novo cenário (0.13s)
+        // 2. Abre as portas revelando o novo cenário com Denilson e o cliente feliz (0.16s)
         setTimeout(() => {
           stage.classList.remove('closing');
           isDoorTransitioning = false;
-        }, 130);
-      }, 130);
-
-      resetDoorProgress();
+        }, 160);
+      }, 160);
     }
 
     function selectDoorScenario(index) {
@@ -1532,59 +1389,80 @@
       triggerDoorTransition(prev);
     }
 
-    function resetDoorProgress() {
-      doorProgress = 0;
-      const fill = document.getElementById('doorProgressFill');
-      if (fill) fill.style.width = '0%';
-    }
-
     function startDoorAutoPlay() {
       stopDoorAutoPlay();
-      const intervalMs = 40;
-      const step = (intervalMs / SCENARIO_DURATION) * 100;
-      doorProgressTimer = setInterval(() => {
-        doorProgress += step;
-        const fill = document.getElementById('doorProgressFill');
-        if (fill) fill.style.width = `${Math.min(doorProgress, 100)}%`;
-        if (doorProgress >= 100) {
-          doorProgress = 0;
-          nextDoorScenario();
-        }
-      }, intervalMs);
+      doorTimer = setInterval(nextDoorScenario, SCENARIO_DURATION);
     }
 
     function stopDoorAutoPlay() {
-      if (doorProgressTimer) clearInterval(doorProgressTimer);
+      if (doorTimer) clearInterval(doorTimer);
     }
 
     // Inicialização
     renderDoorContent(0);
     startDoorAutoPlay();
 
-    // Suporte a deslizar (Swipe touch no celular)
+    // Suporte a deslizar com o dedo no celular (Swipe vertical ou horizontal)
     let touchStartX = 0;
+    let touchStartY = 0;
     const stageEl = document.getElementById('doorStage');
     if (stageEl) {
       stageEl.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
         stopDoorAutoPlay();
       }, { passive: true });
 
       stageEl.addEventListener('touchend', (e) => {
         const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
         const diffX = touchEndX - touchStartX;
-        if (Math.abs(diffX) > 40) {
-          if (diffX < 0) nextDoorScenario(); // deslizar para esquerda -> próximo
-          else prevDoorScenario(); // deslizar para direita -> anterior
+        const diffY = touchEndY - touchStartY;
+
+        // Se deslizou para cima/baixo ou esquerda/direita
+        if (Math.abs(diffY) > 35 || Math.abs(diffX) > 35) {
+          if (diffY < -35 || diffX < -35) {
+            nextDoorScenario(); // deslizar pra baixo / esquerda -> próximo cenário
+          } else if (diffY > 35 || diffX > 35) {
+            prevDoorScenario(); // deslizar pra cima / direita -> cenário anterior
+          }
         }
-        setTimeout(startDoorAutoPlay, 2000);
+        setTimeout(startDoorAutoPlay, 2500);
       }, { passive: true });
+
+      stageEl.addEventListener('mouseenter', stopDoorAutoPlay);
+      stageEl.addEventListener('mouseleave', startDoorAutoPlay);
     }
 
-    const showcaseEl = document.getElementById('doorShowcase');
-    if (showcaseEl) {
-      showcaseEl.addEventListener('mouseenter', stopDoorAutoPlay);
-      showcaseEl.addEventListener('mouseleave', startDoorAutoPlay);
+    // Suporte a scroll com a roda do mouse / touchpad na tela inicial
+    let lastWheelTime = 0;
+    const heroSectionEl = document.getElementById('inicio');
+    if (heroSectionEl) {
+      heroSectionEl.addEventListener('wheel', (e) => {
+        const now = Date.now();
+        if (now - lastWheelTime < 500) return;
+
+        if (e.deltaY > 25) {
+          // Scroll para baixo
+          if (currentDoorIndex < doorScenarios.length - 1) {
+            e.preventDefault();
+            nextDoorScenario();
+            lastWheelTime = now;
+            stopDoorAutoPlay();
+            setTimeout(startDoorAutoPlay, 3000);
+          }
+          // Ao chegar no último, o scroll normal prossegue para o vídeo oficial!
+        } else if (e.deltaY < -25) {
+          // Scroll para cima
+          if (currentDoorIndex > 0) {
+            e.preventDefault();
+            prevDoorScenario();
+            lastWheelTime = now;
+            stopDoorAutoPlay();
+            setTimeout(startDoorAutoPlay, 3000);
+          }
+        }
+      }, { passive: false });
     }
 
     function handleQuoteSubmit(e) {
