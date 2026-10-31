@@ -1268,7 +1268,7 @@
     const doorScenarios = [
       {
         icon: "✈️",
-        image: "carro-nivus-real.jpg",
+        image: "slide-aeroporto-nivus.jpg",
         pill: "Viracopos • Guarulhos • Congonhas",
         title: "Indo ao Aeroporto sem Estresse",
         sub: "Denilson Couto abrindo a porta do VW Nivus com pontualidade e tranquilidade.",
@@ -1277,7 +1277,7 @@
       },
       {
         icon: "⭐",
-        image: "viagem-real-feliz.jpg",
+        image: "slide-passageiros-nivus.jpg",
         pill: "Conforto & Confiança a Bordo",
         title: "Atendimento com Alegria e Respeito",
         sub: "Clientes 100% satisfeitos curtindo a viagem com ar-condicionado e total tranquilidade.",
@@ -1286,7 +1286,7 @@
       },
       {
         icon: "🍸",
-        image: "nivus-noite-real.jpg",
+        image: "destino-balada-cinza.jpg",
         pill: "Noite VIP • Baladas & Jantares",
         title: "Indo na Balada sem se Preocupar",
         sub: "Curta sua noite com liberdade e zero preocupação com lei seca. Chegada VIP e retorno seguro no VW Nivus.",
@@ -1295,7 +1295,7 @@
       },
       {
         icon: "💍",
-        image: "nivus-vip-real.jpg",
+        image: "destino-casamento-cinza.jpg",
         pill: "Noivas & Momentos Inesquecíveis",
         title: "Indo ao Casamento com Presença",
         sub: "Chegada triunfal ao altar. Motorista Denilson com terno alinhado e o VW Nivus impecavelmente limpo.",
@@ -1304,7 +1304,7 @@
       },
       {
         icon: "🤠",
-        image: "carro-nivus-real.jpg",
+        image: "destino-rodeio-cinza.jpg",
         pill: "Barretos • Jaguariúna • Americana",
         title: "Indo ao Rodeio com Conforto VIP",
         sub: "Aproveite os maiores shows do início ao fim com desembarque direto na portaria principal.",
@@ -1313,7 +1313,7 @@
       },
       {
         icon: "⭐",
-        image: "nivus-aeroporto-real.jpg",
+        image: "destino-corporativo-cinza.jpg",
         pill: "Viagens Executivas & Diárias",
         title: "Indo a Reuniões & Viagens Particulares",
         sub: "Pontualidade britânica, conforto de primeira classe e discrição absoluta para seus compromissos no VW Nivus.",
@@ -1397,6 +1397,28 @@
     // Inicialização automática garantida
     renderDoorContent(0);
     startDoorAutoPlay();
+
+    // Sincronização automática com o scroll da página no modo Desktop
+    window.addEventListener('scroll', () => {
+      const hero = document.getElementById('inicio');
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      const heroHeight = hero.offsetHeight - window.innerHeight;
+      if (heroHeight <= 0) return;
+
+      const scrolled = -rect.top;
+      if (scrolled >= 0 && scrolled <= heroHeight) {
+        const progress = scrolled / heroHeight;
+        const targetIndex = Math.min(
+          Math.floor(progress * doorScenarios.length),
+          doorScenarios.length - 1
+        );
+        if (targetIndex !== currentDoorIndex && !isDoorTransitioning) {
+          triggerDoorTransition(targetIndex);
+        }
+      }
+    }, { passive: true });
+
 
     // Suporte a deslizar com o dedo no celular (Swipe vertical ou horizontal)
     let touchStartX = 0;
