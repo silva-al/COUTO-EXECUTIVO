@@ -118,20 +118,18 @@
       box-sizing: border-box;
     }
 
-    /* TRAVA TOTAL CONTRA MOVIMENTO LATERAL NO CELULAR */
+    /* TRAVA TOTAL CONTRA MOVIMENTO LATERAL NO CELULAR (overflow-x: clip preserva position: sticky) */
     html,
     body {
       width: 100%;
       max-width: 100%;
       overflow-x: clip;
-      overflow-x: hidden;
       background-color: var(--navy-deep);
       color: var(--ivory);
       font-family: var(--font-sans);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       touch-action: pan-y;
-      scroll-behavior: smooth;
     }
 
     h1,
@@ -483,41 +481,34 @@
       text-transform: uppercase;
     }
 
-    /* ---------- TELA INICIAL: EXPERIÊNCIA DE EMBARQUE EXECUTIVO (DENILSON COUTO) ---------- */
+    /* ---------- TELA INICIAL: ROLAGEM 3D STICKY (DENILSON COUTO) ---------- */
     .hero-showcase-section {
       position: relative;
       width: 100%;
-      height: calc(100vh - 60px);
-      min-height: 520px;
-      max-height: 860px;
-      padding-top: 56px;
+      height: 440vh;
       background: #070a0e;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    @media (min-width: 768px) {
-      .hero-showcase-section {
-        height: calc(100vh - 72px);
-        min-height: 580px;
-        max-height: 880px;
-        padding-top: 72px;
-      }
     }
 
     .door-showcase-stage {
-      position: relative;
+      position: sticky;
+      top: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
+      height: 100dvh;
+      padding-top: 56px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       background: #05070a;
-      touch-action: pan-y;
       user-select: none;
       perspective: 1400px;
       perspective-origin: center center;
+    }
+    @media (min-width: 768px) {
+      .door-showcase-stage {
+        padding-top: 72px;
+      }
     }
 
     .door-bg-image {
@@ -1070,17 +1061,17 @@
       <div class="door-bg-overlay"></div>
 
       <!-- PORTA ESQUERDA DE CARRO EXECUTIVO -->
-      <div class="executive-door executive-door-left">
+      <div class="executive-door executive-door-left" id="doorLeft">
         <div class="door-handle"></div>
       </div>
 
       <!-- PORTA DIREITA DE CARRO EXECUTIVO -->
-      <div class="executive-door executive-door-right">
+      <div class="executive-door executive-door-right" id="doorRight">
         <div class="door-handle"></div>
       </div>
 
       <!-- SELO CENTRAL DOURADO QUANDO AS PORTAS SE FECHAM -->
-      <div class="door-closed-badge">
+      <div class="door-closed-badge" id="doorClosedBadge">
         <div class="door-closed-monogram">CE</div>
         <div class="door-closed-text">COUTO EXECUTIVO</div>
         <div class="door-closed-sub">Embarque Confirmado</div>
@@ -1273,38 +1264,47 @@
       }
     }
 
-    /* ---------- LÓGICA DO SHOWCASE PORTAS ABRINDO E FECHANDO (DENILSON COUTO) ---------- */
+    /* ---------- LÓGICA DO SHOWCASE COM O VW NIVUS REAL E DENILSON COUTO ---------- */
     const doorScenarios = [
       {
         icon: "✈️",
-        image: "destino-aeroporto.jpg",
+        image: "carro-nivus-real.jpg",
         pill: "Viracopos • Guarulhos • Congonhas",
         title: "Indo ao Aeroporto sem Estresse",
-        sub: "Denilson Couto abrindo a porta para seu embarque com pontualidade britânica e tranquilidade.",
+        sub: "Denilson Couto abrindo a porta do VW Nivus com pontualidade e tranquilidade.",
         cta: "Agendar Transfer de Aeroporto →",
         msg: "Olá, Couto! Gostaria de agendar um Transfer para Aeroporto."
       },
       {
+        icon: "⭐",
+        image: "viagem-real-feliz.jpg",
+        pill: "Conforto & Confiança a Bordo",
+        title: "Atendimento com Alegria e Respeito",
+        sub: "Clientes 100% satisfeitos curtindo a viagem com ar-condicionado e total tranquilidade.",
+        cta: "Reservar Viagem com Couto →",
+        msg: "Olá, Couto! Gostaria de agendar um horário com você."
+      },
+      {
         icon: "🍸",
-        image: "destino-balada.jpg",
+        image: "nivus-noite-real.jpg",
         pill: "Noite VIP • Baladas & Jantares",
         title: "Indo na Balada sem se Preocupar",
-        sub: "Curta sua noite com liberdade e zero preocupação com lei seca. Chegada VIP e retorno seguro.",
+        sub: "Curta sua noite com liberdade e zero preocupação com lei seca. Chegada VIP e retorno seguro no VW Nivus.",
         cta: "Agendar Ida & Volta de Balada →",
         msg: "Olá, Couto! Gostaria de agendar transporte particular para Balada/Festa."
       },
       {
         icon: "💍",
-        image: "destino-casamento.jpg",
+        image: "nivus-vip-real.jpg",
         pill: "Noivas & Momentos Inesquecíveis",
         title: "Indo ao Casamento com Presença",
-        sub: "Chegada triunfal ao altar. Motorista Denilson com terno alinhado abrindo a porta com cortesia.",
+        sub: "Chegada triunfal ao altar. Motorista Denilson com terno alinhado e o VW Nivus impecavelmente limpo.",
         cta: "Agendar Carro para Casamento →",
         msg: "Olá, Couto! Gostaria de um orçamento para Casamento ou Evento especial."
       },
       {
         icon: "🤠",
-        image: "destino-rodeio.jpg",
+        image: "carro-nivus-real.jpg",
         pill: "Barretos • Jaguariúna • Americana",
         title: "Indo ao Rodeio com Conforto VIP",
         sub: "Aproveite os maiores shows do início ao fim com desembarque direto na portaria principal.",
@@ -1313,10 +1313,10 @@
       },
       {
         icon: "⭐",
-        image: "destino-corporativo.jpg",
+        image: "nivus-aeroporto-real.jpg",
         pill: "Viagens Executivas & Diárias",
         title: "Indo a Reuniões & Viagens Particulares",
-        sub: "Pontualidade rigorosa, conforto de primeira classe e discrição absoluta para seus compromissos.",
+        sub: "Pontualidade britânica, conforto de primeira classe e discrição absoluta para seus compromissos no VW Nivus.",
         cta: "Agendar Atendimento Corporativo →",
         msg: "Olá, Couto! Gostaria de consultar atendimento Corporativo ou Viagem Particular."
       }
@@ -1325,7 +1325,7 @@
     let currentDoorIndex = 0;
     let doorTimer = null;
     let isDoorTransitioning = false;
-    const SCENARIO_DURATION = 2800; // ~2.8s dinâmico e agradável
+    const SCENARIO_DURATION = 3200; // ~3.2s automático contínuo
 
     function renderDoorContent(index) {
       const s = doorScenarios[index];
@@ -1390,15 +1390,11 @@
     }
 
     function startDoorAutoPlay() {
-      stopDoorAutoPlay();
+      if (doorTimer) clearInterval(doorTimer);
       doorTimer = setInterval(nextDoorScenario, SCENARIO_DURATION);
     }
 
-    function stopDoorAutoPlay() {
-      if (doorTimer) clearInterval(doorTimer);
-    }
-
-    // Inicialização
+    // Inicialização automática garantida
     renderDoorContent(0);
     startDoorAutoPlay();
 
@@ -1410,7 +1406,6 @@
       stageEl.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        stopDoorAutoPlay();
       }, { passive: true });
 
       stageEl.addEventListener('touchend', (e) => {
@@ -1422,16 +1417,12 @@
         // Se deslizou para cima/baixo ou esquerda/direita
         if (Math.abs(diffY) > 35 || Math.abs(diffX) > 35) {
           if (diffY < -35 || diffX < -35) {
-            nextDoorScenario(); // deslizar pra baixo / esquerda -> próximo cenário
+            nextDoorScenario();
           } else if (diffY > 35 || diffX > 35) {
-            prevDoorScenario(); // deslizar pra cima / direita -> cenário anterior
+            prevDoorScenario();
           }
         }
-        setTimeout(startDoorAutoPlay, 2500);
       }, { passive: true });
-
-      stageEl.addEventListener('mouseenter', stopDoorAutoPlay);
-      stageEl.addEventListener('mouseleave', startDoorAutoPlay);
     }
 
     // Suporte a scroll com a roda do mouse / touchpad na tela inicial
@@ -1443,23 +1434,16 @@
         if (now - lastWheelTime < 500) return;
 
         if (e.deltaY > 25) {
-          // Scroll para baixo
           if (currentDoorIndex < doorScenarios.length - 1) {
             e.preventDefault();
             nextDoorScenario();
             lastWheelTime = now;
-            stopDoorAutoPlay();
-            setTimeout(startDoorAutoPlay, 3000);
           }
-          // Ao chegar no último, o scroll normal prossegue para o vídeo oficial!
         } else if (e.deltaY < -25) {
-          // Scroll para cima
           if (currentDoorIndex > 0) {
             e.preventDefault();
             prevDoorScenario();
             lastWheelTime = now;
-            stopDoorAutoPlay();
-            setTimeout(startDoorAutoPlay, 3000);
           }
         }
       }, { passive: false });
