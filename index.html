@@ -537,27 +537,143 @@
       box-shadow: 0 2px 10px rgba(201, 155, 106, 0.35);
     }
 
+    /* ---------- CARD DE AUTORIDADE DO COUTO NO HERO ---------- */
+    .hero-chauffeur-card {
+      background: var(--navy-card);
+      border: 1px solid var(--line-gold);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .hero-chauffeur-img-wrap {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #05070a;
+    }
+
+    .hero-chauffeur-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .hero-chauffeur-pill {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(7, 10, 14, 0.9);
+      border: 1px solid var(--line-gold);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.70rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-chauffeur-meta {
+      padding: 4px 6px 6px;
+    }
+
+    /* ---------- SEÇÃO DE VÍDEO OFICIAL (GRAND FINALE) ---------- */
+    .video-section-showcase {
+      padding: 60px 0;
+      background: linear-gradient(180deg, var(--navy-dark) 0%, #070a0e 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
     .door-stage {
       position: relative;
-      min-height: 275px;
+      min-height: 420px;
       padding: 24px 20px 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: radial-gradient(circle at 50% 30%, rgba(201, 155, 106, 0.08) 0%, transparent 70%);
+      justify-content: flex-end;
+      border-radius: 0 0 10px 10px;
+      background: #05070a;
     }
 
-    /* As duas portas de carro executivo */
+    .door-bg-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 0.2s ease, transform 0.3s ease;
+      z-index: 1;
+    }
+
+    .door-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 10, 14, 0.25) 0%, rgba(7, 10, 14, 0.72) 45%, rgba(7, 10, 14, 0.96) 100%);
+      z-index: 2;
+    }
+
+    /* Badge do Couto Chauffeur no topo do slide */
+    .door-chauffeur-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(7, 10, 14, 0.88);
+      border: 1px solid var(--line-gold);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px 4px 5px;
+      border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .door-chauffeur-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--gold);
+    }
+
+    .door-chauffeur-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ivory);
+      line-height: 1.1;
+    }
+
+    .door-chauffeur-sub {
+      font-size: 0.62rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* As duas portas de carro executivo (super rápidas) */
     .executive-door {
       position: absolute;
       top: 0;
       bottom: 0;
       width: 50.5%;
       z-index: 10;
-      background: linear-gradient(135deg, #161c26 0%, #080a0f 100%);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.95);
-      transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(135deg, #141923 0%, #06080c 100%);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.98);
+      transition: transform 0.13s cubic-bezier(0.2, 0.9, 0.3, 1);
       display: flex;
       align-items: center;
       pointer-events: none;
@@ -1010,7 +1126,7 @@
     </div>
   </header>
 
-  <!-- CAPA + VÍDEO DE CHEGADA -->
+  <!-- CAPA HERO -->
   <section class="hero-wrapper" id="inicio">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -1028,30 +1144,34 @@
           </h1>
 
           <p class="hero-subtitle">
-            Atendimento exclusivo sob agendamento para empresas, aeroportos (Viracopos, Guarulhos e Congonhas),
-            casamentos e viagens.
+            Atendimento exclusivo sob agendamento para aeroportos (Viracopos, Guarulhos e Congonhas),
+            casamentos, baladas, rodeios e viagens particulares.
           </p>
 
           <div class="hero-actions">
             <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo."
               class="btn-primary" target="_blank" rel="noopener">
-              Agendar pelo WhatsApp
+              Agendar no WhatsApp
             </a>
-            <a href="#simulador" class="btn-ghost">
-              Simular Cotação
+            <a href="#servicos" class="btn-ghost">
+              Ver Ocasiões & Serviços
             </a>
           </div>
         </div>
 
-        <!-- VÍDEO DE CHEGADA -->
-        <div class="arrival-video-wrap">
-          <div class="arrival-video-inner">
-            <video id="arrivalVideo" poster="foto-couto.jpg" autoplay playsinline loop preload="auto" controls
-              onclick="enableVideoAudioOnTap(event)"></video>
+        <!-- CARD DE AUTORIDADE COM FOTO DO COUTO -->
+        <div class="hero-chauffeur-card">
+          <div class="hero-chauffeur-img-wrap">
+            <img src="foto-couto.jpg" alt="Couto Executivo Chauffeur" class="hero-chauffeur-img">
+            <div class="hero-chauffeur-pill">
+              <span class="badge-dot"></span>
+              <span>Motorista Particular Oficial</span>
+            </div>
           </div>
-          <button type="button" id="videoSoundBtn" class="video-unmute-btn" onclick="toggleHeroVideoSound()">
-            🔊 Ouvir Apresentação com Áudio
-          </button>
+          <div class="hero-chauffeur-meta">
+            <div style="font-weight: 700; font-size: 0.95rem; color: var(--ivory);">Atendimento Personalizado</div>
+            <div style="font-size: 0.78rem; color: var(--gold); margin-top: 2px;">★★★★★ 5.0 • Excelência em Campinas, Hortolândia & SP</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1063,20 +1183,34 @@
       <div class="section-head">
         <span class="eyebrow">Embarque Executivo • O Momento de Cada Cliente</span>
         <h2>Para Onde Você Quer Ir?</h2>
-        <p>Abertura de porta e atendimento de primeira classe sob medida para a sua ocasião.</p>
+        <p>Deslize para sentir a experiência do Couto abrindo a porta para a sua ocasião.</p>
       </div>
 
       <div class="door-showcase-container" id="doorShowcase">
-        <!-- ABAS DOS 4 PERFIS DE CLIENTE -->
+        <!-- ABAS DOS 5 PERFIS DE CLIENTE -->
         <div class="door-nav-tabs">
           <button type="button" class="door-tab-btn active" data-index="0" onclick="selectDoorScenario(0)">✈️ Aeroporto</button>
           <button type="button" class="door-tab-btn" data-index="1" onclick="selectDoorScenario(1)">🍸 Balada & Noite</button>
           <button type="button" class="door-tab-btn" data-index="2" onclick="selectDoorScenario(2)">💍 Casamento</button>
           <button type="button" class="door-tab-btn" data-index="3" onclick="selectDoorScenario(3)">🤠 Rodeio & Festas</button>
+          <button type="button" class="door-tab-btn" data-index="4" onclick="selectDoorScenario(4)">⭐ Corporativo & Viagens</button>
         </div>
 
         <!-- PALCO DAS PORTAS EXECUTIVAS -->
         <div class="door-stage" id="doorStage">
+          <!-- IMAGEM DE FUNDO DA OCASIÃO -->
+          <div class="door-bg-image" id="doorBgImage"></div>
+          <div class="door-bg-overlay"></div>
+
+          <!-- BADGE DO COUTO CHAUFFEUR SORRINDO NA PORTA -->
+          <div class="door-chauffeur-badge">
+            <img src="couto-avatar.jpg" alt="Couto Chauffeur" class="door-chauffeur-avatar">
+            <div>
+              <div class="door-chauffeur-text">Couto Executivo</div>
+              <div class="door-chauffeur-sub">Porta Aberta • Bem-vindo a Bordo</div>
+            </div>
+          </div>
+
           <!-- PORTA ESQUERDA -->
           <div class="executive-door executive-door-left">
             <div class="door-handle"></div>
@@ -1106,6 +1240,34 @@
           </div>
           <button type="button" class="door-ctrl-btn" onclick="nextDoorScenario()" aria-label="Próximo">›</button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE VÍDEO OFICIAL / A CHEGADA DO COUTO EXECUTIVO (GRAND FINALE) -->
+  <section class="video-section-showcase" id="video-oficial">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;">
+        <span class="eyebrow">Apresentação Oficial • Veja na Prática</span>
+        <h2>A Chegada do Couto Executivo</h2>
+        <p>Assista ao vídeo e sinta a experiência de pontualidade, veículo impecável e recepção exclusiva.</p>
+      </div>
+
+      <div class="arrival-video-wrap" style="max-width:820px; margin: 0 auto;">
+        <div class="arrival-video-inner">
+          <video id="arrivalVideo" poster="foto-couto.jpg" autoplay playsinline loop preload="auto" controls
+            onclick="enableVideoAudioOnTap(event)"></video>
+        </div>
+        <button type="button" id="videoSoundBtn" class="video-unmute-btn" onclick="toggleHeroVideoSound()">
+          🔊 Ouvir Apresentação com Áudio
+        </button>
+      </div>
+
+      <div style="text-align:center; margin-top: 24px;">
+        <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Vi%20o%20v%C3%ADdeo%20no%20site%20e%20gostaria%20de%20agendar%20um%20hor%C3%A1rio."
+          class="btn-primary" target="_blank" rel="noopener">
+          Agendar pelo WhatsApp
+        </a>
       </div>
     </div>
   </section>
@@ -1249,28 +1411,31 @@
       }
     }
 
-    /* ---------- LÓGICA DO SHOWCASE PORTAS ABRINDO E FECHANDO ---------- */
+    /* ---------- LÓGICA DO SHOWCASE PORTAS ABRINDO E FECHANDO (SUPER RÁPIDO) ---------- */
     const doorScenarios = [
       {
         icon: "✈️",
+        image: "destino-aeroporto.jpg",
         tag: "Transfer VIP • Viracopos, Guarulhos & Congonhas",
         title: "Indo ao Aeroporto sem Estresse",
-        desc: "Monitoramento de voo em tempo real, pontualidade britânica e auxílio completo com as bagagens. Chegue no portão de embarque com calma e tranquilidade.",
+        desc: "Monitoramento de voo em tempo real, pontualidade britânica e auxílio completo com as bagagens. Embarque com calma e tranquilidade.",
         chips: ["Pontualidade britânica", "Auxílio com malas", "Rota expressa anti-trânsito"],
         cta: "Agendar Transfer para Aeroporto →",
         msg: "Olá, Couto Executivo! Gostaria de agendar um Transfer para Aeroporto."
       },
       {
         icon: "🍸",
-        tag: "Vida Noturna • Baladas, Shows & Jantares",
+        image: "destino-balada.jpg",
+        tag: "Vida Noturna • Baladas, Shows & Jantares VIP",
         title: "Indo na Balada sem se Preocupar",
-        desc: "Curta sua noite com 100% de liberdade. Beba e comemore à vontade sem risco de blitz, lei seca ou estresse de estacionamento. O motorista te deixa na porta e já está a postos na saída.",
+        desc: "Curta sua noite com 100% de liberdade. Beba e comemore sem risco de bafômetro ou lei seca. O motorista te deixa na porta e já está a postos na saída.",
         chips: ["Zero risco com bafômetro", "Carro te esperando na saída", "Discrição e segurança total"],
         cta: "Agendar Ida & Volta de Balada →",
         msg: "Olá, Couto Executivo! Gostaria de agendar transporte particular para Balada/Festa."
       },
       {
         icon: "💍",
+        image: "destino-casamento.jpg",
         tag: "Momento Inesquecível • Noivas & Cerimônias",
         title: "Indo ao Casamento com Presença",
         desc: "Chegada triunfal ao altar. Veículo impecavelmente limpo e perfumado, ar-condicionado na temperatura perfeita e motorista com terno alinhado abrindo a porta com cortesia.",
@@ -1280,12 +1445,23 @@
       },
       {
         icon: "🤠",
-        tag: "Grandes Festivais • Jaguariúna, Barretos & Americana",
+        image: "destino-rodeio.jpg",
+        tag: "Grandes Festivais • Barretos, Jaguariúna & Americana",
         title: "Indo ao Rodeio com Conforto VIP",
-        desc: "Aproveite os maiores shows do início ao fim sem perrengue com lama, trânsito quilométrico ou filas no estacionamento. Embarque VIP e retorno seguro para casa de madrugada.",
+        desc: "Aproveite os maiores shows do início ao fim sem perrengue com lama, trânsito ou estacionamento longe. Embarque VIP e retorno seguro para casa de madrugada.",
         chips: ["Embarque direto no portão", "Sem fila de estacionamento", "Volta garantida de madrugada"],
         cta: "Agendar Transporte para Rodeio →",
         msg: "Olá, Couto Executivo! Gostaria de transporte exclusivo para Rodeio/Festival."
+      },
+      {
+        icon: "⭐",
+        image: "destino-corporativo.jpg",
+        tag: "Corporativo & Viagens • Reuniões & Diárias",
+        title: "Indo a Compromissos & Viagens Executivas",
+        desc: "Atendimento executivo de alto padrão para reuniões decisivas, visitas técnicas e viagens particulares com discrição absoluta e conforto de primeira classe.",
+        chips: ["Total discrição e sigilo", "Espaço para trabalhar a bordo", "Diárias e viagens pontuais"],
+        cta: "Agendar Atendimento Corporativo →",
+        msg: "Olá, Couto Executivo! Gostaria de consultar atendimento Corporativo/Viagem Executiva."
       }
     ];
 
@@ -1293,12 +1469,15 @@
     let doorProgressTimer = null;
     let doorProgress = 0;
     let isDoorTransitioning = false;
-    const SCENARIO_DURATION = 3800; // ~3.8s ágil, não muito lento
+    const SCENARIO_DURATION = 1900; // ~1.9s ultra rápido, dinâmico e ágil
 
     function renderDoorContent(index) {
       const s = doorScenarios[index];
       const container = document.getElementById('doorContent');
-      if (!container) return;
+      const bgImg = document.getElementById('doorBgImage');
+      if (!container || !bgImg) return;
+
+      bgImg.style.backgroundImage = `url('${s.image}')`;
       const chipsHtml = s.chips.map(c => `<span class="door-feature-chip">✓ ${c}</span>`).join('');
       const waUrl = `https://wa.me/5519983463457?text=${encodeURIComponent(s.msg)}`;
       container.innerHTML = `
@@ -1321,19 +1500,19 @@
       const stage = document.getElementById('doorStage');
       if (!stage) return;
 
-      // 1. Fecha as portas (slide inward)
+      // 1. Fecha as portas (0.13s)
       stage.classList.add('closing');
 
       setTimeout(() => {
         currentDoorIndex = nextIndex;
         renderDoorContent(currentDoorIndex);
 
-        // 2. Abre as portas revelando o novo cenário
+        // 2. Abre as portas revelando o novo cenário (0.13s)
         setTimeout(() => {
           stage.classList.remove('closing');
           isDoorTransitioning = false;
-        }, 220);
-      }, 350);
+        }, 130);
+      }, 130);
 
       resetDoorProgress();
     }
@@ -1361,7 +1540,7 @@
 
     function startDoorAutoPlay() {
       stopDoorAutoPlay();
-      const intervalMs = 60;
+      const intervalMs = 40;
       const step = (intervalMs / SCENARIO_DURATION) * 100;
       doorProgressTimer = setInterval(() => {
         doorProgress += step;
@@ -1382,12 +1561,30 @@
     renderDoorContent(0);
     startDoorAutoPlay();
 
+    // Suporte a deslizar (Swipe touch no celular)
+    let touchStartX = 0;
+    const stageEl = document.getElementById('doorStage');
+    if (stageEl) {
+      stageEl.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopDoorAutoPlay();
+      }, { passive: true });
+
+      stageEl.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchEndX - touchStartX;
+        if (Math.abs(diffX) > 40) {
+          if (diffX < 0) nextDoorScenario(); // deslizar para esquerda -> próximo
+          else prevDoorScenario(); // deslizar para direita -> anterior
+        }
+        setTimeout(startDoorAutoPlay, 2000);
+      }, { passive: true });
+    }
+
     const showcaseEl = document.getElementById('doorShowcase');
     if (showcaseEl) {
       showcaseEl.addEventListener('mouseenter', stopDoorAutoPlay);
       showcaseEl.addEventListener('mouseleave', startDoorAutoPlay);
-      showcaseEl.addEventListener('touchstart', stopDoorAutoPlay, { passive: true });
-      showcaseEl.addEventListener('touchend', () => setTimeout(startDoorAutoPlay, 2500), { passive: true });
     }
 
     function handleQuoteSubmit(e) {
