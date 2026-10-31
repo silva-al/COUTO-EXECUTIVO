@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://silva-al.github.io/COUTO-EXECUTIVO/sitemap.xml
+
