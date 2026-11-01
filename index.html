@@ -496,7 +496,7 @@
       --cinema-sans: "Jost", system-ui, sans-serif;
     }
 
-    /* Telas Desktop (>768px): exibe o hero institucional e oculta a experiência cinematográfica */
+    /* Telas Desktop (>768px): exibe o hero institucional e oculta a experiencia cinematografica */
     @media (min-width: 769px) {
       #film {
         display: none !important;
@@ -506,7 +506,7 @@
       }
     }
 
-    /* Telas Mobile (<=768px): ativa o filme interativo e oculta o hero estático */
+    /* Telas Mobile (<=768px): ativa o filme interativo e oculta o hero estatico */
     @media (max-width: 768px) {
       .desktop-hero-section {
         display: none !important;
@@ -528,133 +528,172 @@
       inset: 0;
       visibility: hidden;
       overflow: hidden;
+      background: #000;
     }
 
-    .ly {
+    .vid {
       position: absolute;
-      inset: -10%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform-origin: 50% 55%;
       will-change: transform;
     }
 
-    .back {
-      background: radial-gradient(120% 70% at 50% 100%, hsl(var(--h, 45) 45% 24%), transparent 62%), linear-gradient(#000, hsl(var(--h, 45) 32% 9%));
-    }
-
-    .back::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .55;
-      background: radial-gradient(circle at 20% 30%, #c9a24b55 0 5px, transparent 6px),
-                  radial-gradient(circle at 75% 22%, #c9a24b44 0 8px, transparent 9px),
-                  radial-gradient(circle at 60% 48%, #efe7d433 0 4px, transparent 5px),
-                  radial-gradient(circle at 35% 55%, #c9a24b33 0 10px, transparent 11px);
-    }
-
-    .mid {
-      display: grid;
-      place-items: center;
-    }
-
-    .bg {
+    .bgi {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(14px) brightness(.5) saturate(1.2);
+      filter: blur(16px) brightness(.5) saturate(1.2);
     }
 
-    .pic {
-      display: block;
+    .car {
+      position: absolute;
+      left: 0;
+      top: 50%;
       width: 100%;
-      height: 58svh;
-      object-fit: cover;
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
-      mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+      height: auto;
+      transform-origin: 28% 62%;
     }
 
-    .pic.full {
-      -webkit-mask-image: none;
-      mask-image: none;
-      height: 100svh;
-    }
-
-    .clip {
+    .fx {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      visibility: hidden;
-      will-change: transform, opacity;
+      pointer-events: none;
+      background: radial-gradient(90% 70% at 50% 45%, transparent 50%, #000a 100%), linear-gradient(to top, #000 0, #000a 18%, transparent 42%);
     }
 
-
-    .front {
-      background: radial-gradient(90% 70% at 50% 45%, transparent 40%, #000 100%), linear-gradient(to top, #000 0, #000a 22%, transparent 50%);
-    }
-
-    .reveal {
+    .dof {
       position: absolute;
       inset: 0;
-      visibility: hidden;
-      clip-path: inset(42% 36% 28% 36% round 12px);
-      overflow: hidden;
+      z-index: 3;
+      pointer-events: none;
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      -webkit-mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 58%, #000 100%);
+      mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 58%, #000 100%);
+    }
+
+    .bok {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 200%;
+      pointer-events: none;
+      opacity: .5;
+      background: radial-gradient(circle, #c9a24b66 0 3px, transparent 4px) 0 0/90px 140px, radial-gradient(circle, #efe7d444 0 6px, transparent 7px) 40px 70px/170px 230px;
+    }
+
+    .sw {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(105deg, transparent 35%, #c9a24b55 50%, transparent 65%);
+    }
+
+    .lb {
+      position: absolute;
+      z-index: 6;
+      left: 0;
+      right: 0;
+      height: 6svh;
+      background: #000;
+      pointer-events: none;
+    }
+
+    .lbt {
+      top: 0;
+      transform-origin: 50% 0;
+    }
+
+    .lbb {
+      bottom: 0;
+      transform-origin: 50% 100%;
+    }
+
+    .grain {
+      position: absolute;
+      z-index: 7;
+      inset: 0;
+      pointer-events: none;
+      opacity: .09;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     .cap {
       position: absolute;
       left: 24px;
       right: 24px;
-      bottom: calc(13svh + env(safe-area-inset-bottom, 0px));
+      bottom: calc(14svh + env(safe-area-inset-bottom, 0px));
       visibility: hidden;
+      z-index: 5;
     }
 
     .cap p {
       margin: 0;
-      font: 600 clamp(26px, 8vw, 36px)/1.12 var(--cinema-serif);
-      color: var(--cinema-ivory);
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+      font: 600 clamp(24px, 7.5vw, 34px)/1.12 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
       text-wrap: balance;
+      color: var(--cinema-ivory, #efe7d4);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     }
 
     .cap small {
       display: block;
       margin-bottom: 8px;
-      font: 500 12px/1.3 var(--cinema-sans);
-      color: var(--cinema-gold);
+      font: 500 12px/1.3 var(--cinema-sans, "Jost", sans-serif);
+      color: var(--cinema-gold, #c9a24b);
       letter-spacing: .08em;
       text-transform: uppercase;
+    }
+
+    .stp {
+      position: absolute;
+      left: 20px;
+      top: calc(62px + env(safe-area-inset-top, 0px));
+      font: 500 12px/1 var(--cinema-sans, "Jost", sans-serif);
+      letter-spacing: .1em;
+      color: var(--cinema-gold, #c9a24b);
+      text-transform: uppercase;
+      z-index: 8;
     }
 
     .end {
       position: absolute;
       inset: 0;
-      display: grid;
-      place-content: end center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 0 24px calc(11svh + env(safe-area-inset-bottom, 0px));
-      gap: 14px;
+      padding: 0 24px;
+      gap: 16px;
+      z-index: 5;
       pointer-events: none;
-      background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.88) 42%, transparent 80%);
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
     }
 
     .end h2 {
       margin: 0;
-      font: 600 clamp(34px, 10vw, 44px)/1.08 var(--cinema-serif);
-      letter-spacing: .14em;
-      color: var(--cinema-gold);
+      font: 600 clamp(32px, 9vw, 44px)/1.05 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
+      letter-spacing: .16em;
+      color: var(--cinema-gold, #c9a24b);
       visibility: hidden;
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
     }
 
     .end p {
       margin: 0;
-      font: 500 clamp(19px, 5.5vw, 24px)/1.25 var(--cinema-serif);
+      font: 500 clamp(18px, 5.2vw, 22px)/1.3 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
       visibility: hidden;
       text-wrap: balance;
-      color: var(--cinema-ivory);
+      color: var(--cinema-ivory, #efe7d4);
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
     }
 
@@ -662,14 +701,14 @@
       justify-self: center;
       pointer-events: auto;
       visibility: hidden;
-      padding: 15px 32px;
+      padding: 16px 28px;
       border-radius: 999px;
-      background: var(--cinema-gold);
+      background: var(--cinema-gold, #c9a24b);
       color: #000;
-      font: 600 14px/1 var(--cinema-sans);
+      font: 600 14px/1 var(--cinema-sans, "Jost", sans-serif);
       letter-spacing: .08em;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(201, 162, 75, 0.4);
+      box-shadow: 0 6px 24px rgba(201, 162, 75, 0.45);
       transition: transform 0.2s ease, filter 0.2s ease;
     }
 
@@ -678,37 +717,73 @@
       transform: scale(1.02);
     }
 
-    .cta:active {
-      transform: scale(0.98);
-    }
-
     .hud {
       position: absolute;
-      z-index: 5;
+      z-index: 8;
       top: calc(14px + env(safe-area-inset-top, 0px));
-      left: 20px;
-      right: 20px;
+      left: 16px;
+      right: 16px;
       display: flex;
       justify-content: space-between;
-      font: 500 12px/1 var(--cinema-sans);
+      align-items: center;
+      font: 500 12px/1 var(--cinema-sans, "Jost", sans-serif);
       color: #b9b09a;
-      letter-spacing: .04em;
+      pointer-events: none;
+    }
+
+    .hud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(7, 10, 14, 0.85);
+      border: 1px solid rgba(201, 162, 75, 0.4);
+      border-radius: 999px;
+      padding: 5px 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .hud-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 6px #25d366;
+    }
+
+    .hud-badge span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--cinema-gold, #c9a24b);
+      text-transform: uppercase;
+    }
+
+    .hud-count {
+      background: rgba(7, 10, 14, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #b9b09a;
     }
 
     .bar {
       position: absolute;
-      z-index: 5;
+      z-index: 8;
       left: 0;
       top: 0;
-      height: 2.5px;
+      height: 2px;
       width: 100%;
-      background: var(--cinema-gold);
+      background: var(--cinema-gold, #c9a24b);
       transform: scaleX(0);
       transform-origin: 0 50%;
     }
 
-    /* Modo simplificado: reduced-motion ou aparelho fraco */
-    .lite #film {
+    .lite .film {
       height: auto;
       overflow: visible;
     }
@@ -727,12 +802,13 @@
       visibility: visible;
     }
 
-    .lite .reveal,
     .lite .hud,
-    .lite .bar {
+    .lite .bar,
+    .lite .stp,
+    .lite .lb,
+    .lite .grain {
       display: none;
     }
-
   </style>
   <!-- GSAP & ScrollTrigger Oficiais -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -956,25 +1032,15 @@
       if (!film) return;
 
       const S = [
-        { k: "individual", n: "Executivo individual", t: "Do aeroporto à reunião, sem pressa e sem imprevistos.", d: "Motorista recebe a passageira no aeroporto.", p: [30, 75], h: 100 },
-        { k: "balada", n: "Balada e eventos", t: "Saia tranquilo. Quem dirige é o motorista.", d: "Motorista recebe a convidada na entrada do evento.", p: [25, 75], h: 100 },
-        { k: "rodeio", n: "Rodeio", t: "Chegue com estilo e aproveite o evento.", d: "Motorista recebe o casal no rodeio.", p: [20, 70], h: 100 },
-        { k: "casamento", n: "Casamento", t: "O dia mais importante merece uma chegada à altura.", d: "Motorista ajuda a noiva a entrar no Nivus.", p: [35, 65], h: 100, mask: { k: "interior", d: "Interior do Nivus.", p: [12], h: 100 } },
-        { k: "interior", n: "A viagem", t: "Viaje com tranquilidade. Aproveite cada momento.", d: "Motorista conduz o Nivus à noite.", p: [12, 75], h: 100 },
-        { k: "fim", n: "Couto Executivo", t: "", d: "Nivus à noite diante do hotel.", end: true, p: [50, 50], h: 56 }
+        { k: "individual", v: "01.mp4", n: "Executivo individual", t: "Do aeroporto a reuniao, sem pressa e sem imprevistos.", d: "Motorista recebe a passageira no aeroporto.", img: "img/aeroporto.webp" },
+        { k: "balada", v: "02.mp4", n: "Balada e eventos", t: "Saia tranquilo. Quem dirige e o motorista.", d: "Motorista recebe a convidada na entrada do evento.", img: "img/festa.webp" },
+        { k: "rodeio", v: "03.mp4", n: "Rodeio", t: "Chegue com estilo e aproveite o evento.", d: "Motorista recebe o casal no rodeio.", img: "img/rodeio.webp" },
+        { k: "casamento", v: "04.mp4", n: "Casamento", t: "O dia mais importante merece uma chegada a altura.", d: "Motorista ajuda a noiva a entrar no Nivus.", img: "img/casamento.webp" },
+        { k: "interior", v: "05.mp4", n: "A viagem", t: "Viaje com tranquilidade. Aproveite cada momento.", d: "Motorista conduz o Nivus a noite com passageiro satisfeito.", img: "img/dentro_do_carro.webp" },
+        { k: "fim", n: "Couto Executivo", t: "", d: "Volkswagen Nivus Cinza Moonstone diante do hotel a noite.", end: true, img: "img/carro.webp" }
       ];
 
-      const PHOTOS = {
-        "individual": "img/aeroporto.webp",
-        "balada": "img/festa.webp",
-        "rodeio": "img/rodeio.webp",
-        "casamento": "img/casamento.webp",
-        "interior": "img/dentro_do_carro.webp",
-        "fim": "img/carro.webp"
-      };
-
       const TOTAL_FRAMES = 56;
-      // Pre-carregamento dos 56 quadros reais de cada clipe
       const cachedFrames = {};
       S.forEach(s => {
         if (!s.end) {
@@ -987,15 +1053,22 @@
         }
       });
 
-      const layers = s => `
-        <div class="ly back" style="background:#000">
-          <img class="bg" alt="" src="${PHOTOS[s.k]}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
+      film.innerHTML = `
+        <div class="bar" id="bar"></div>
+        <div class="hud">
+          <div class="hud-badge">
+            <span class="hud-dot"></span>
+            <span>VW Nivus Cinza Moonstone Oficial</span>
+          </div>
+          <span class="hud-count" id="hud-count">01 / 06</span>
         </div>
-        <div class="ly mid">
-          ${!s.end ? `<img class="clip" alt="${s.d}" src="frames/${s.k}/0.webp">` : ''}
-          <img class="pic${(s.h || 0) >= 100 ? ' full' : ''}" alt="${s.d}" style="height:${s.h || 56}svh;object-position:${(s.p || [50])[0]}% 50%;${!s.end ? 'opacity:0;pointer-events:none;position:absolute;' : ''}" src="${PHOTOS[s.k]}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
-        </div>
-        <div class="ly front"></div>
+        <div class="lb lbt"></div>
+        <div class="lb lbb"></div>
+        <div class="grain"></div>
+        <div class="dof"></div>
+        <div class="bok"></div>
+        <div class="sw" id="cinema-sweep"></div>
+        <div class="stp" id="cinema-step">EXECUTIVO INDIVIDUAL</div>
       `;
 
       S.forEach((s, i) => {
@@ -1003,9 +1076,38 @@
         el.className = 'scene';
         el.setAttribute('role', 'group');
         el.setAttribute('aria-label', `Cena ${i + 1}: ${s.n}`);
-        el.innerHTML = layers(s) + (s.mask ? `<div class="reveal">${layers(s.mask)}</div>` : '') +
-          (s.end ? `<div class="end"><h2>COUTO<br>EXECUTIVO</h2><p>Seu destino merece uma experiência exclusiva.</p><a class="cta" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo" target="_blank" rel="noopener">AGENDAR PELO WHATSAPP</a></div>`
-            : `<div class="cap"><small>${s.n}</small><p>${s.t}</p></div>`);
+
+        if (s.end) {
+          el.innerHTML = `
+            <div class="ly back" style="background:#000">
+              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
+            </div>
+            <div class="ly mid" style="display:flex;align-items:center;justify-content:center;height:100%;width:100%">
+              <img class="car" alt="Volkswagen Nivus Cinza Moonstone" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')" style="position:relative;top:auto;left:auto;width:100%;max-height:56svh;object-fit:contain;-webkit-mask-image:none;mask-image:none">
+            </div>
+            <div class="fx"></div>
+            <div class="end">
+              <h2>COUTO<br>EXECUTIVO</h2>
+              <p>Seu destino merece uma experiencia exclusiva.</p>
+              <a class="cta" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo">AGENDAR PELO WHATSAPP</a>
+            </div>
+          `;
+        } else {
+          el.innerHTML = `
+            <div class="ly back" style="background:#000">
+              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
+            </div>
+            <div class="ly mid" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+              <video class="vid" src="videos/${s.v}" playsinline muted loop preload="auto" style="display:none"></video>
+              <img class="vid" src="frames/${s.k}/0.webp" alt="${s.d}" onerror="this.src='${s.img}'" style="display:block">
+            </div>
+            <div class="fx"></div>
+            <div class="cap">
+              <small>${s.n}</small>
+              <p>${s.t}</p>
+            </div>
+          `;
+        }
         film.appendChild(el);
       });
 
@@ -1016,19 +1118,17 @@
 
       if (lite) {
         document.body.classList.add('lite');
-        return;
-      }
+      } else if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({ ignoreMobileResize: true });
 
-      if (!window.gsap || !window.ScrollTrigger) return;
-      gsap.registerPlugin(ScrollTrigger);
-      ScrollTrigger.config({ ignoreMobileResize: true });
-
-      const mm = gsap.matchMedia();
-      mm.add("(max-width: 768px)", () => {
         const sc = [...film.querySelectorAll(':scope > .scene')];
         const L = 10;
-        const hud = document.getElementById('hud');
+        const hudCount = document.getElementById('hud-count');
+        const cinemaStep = document.getElementById('cinema-step');
         const bar = document.getElementById('bar');
+        const sweep = document.getElementById('cinema-sweep');
+        const bok = film.querySelector('.bok');
 
         const tl = gsap.timeline({
           defaults: { ease: 'none' },
@@ -1037,45 +1137,44 @@
             start: 'top top',
             end: '+=' + (S.length * 110) + '%',
             pin: true,
-            scrub: 1,
+            scrub: 0.8,
             anticipatePin: 1,
             onUpdate: s => {
               if (bar) bar.style.transform = `scaleX(${s.progress})`;
-              if (hud) hud.textContent = S[Math.min(S.length - 1, Math.floor(s.progress * S.length))].n;
+              const activeIndex = Math.min(S.length - 1, Math.floor(s.progress * S.length));
+              if (hudCount) hudCount.textContent = `0${activeIndex + 1} / 0${S.length}`;
+              if (cinemaStep) cinemaStep.textContent = S[activeIndex].n.toUpperCase();
             }
           }
         });
 
+        if (bok) {
+          tl.to(bok, { yPercent: -25, duration: L * S.length, ease: 'none' }, 0);
+        }
+
         sc.forEach((el, i) => {
           const t = i * L;
           const q = c => el.querySelector(':scope > ' + c);
-          const back = q('.back'), mid = q('.mid'), front = q('.front'), cap = q('.cap'), clip = el.querySelector('.clip');
-          gsap.set(el, { transformPerspective: 900 });
+          const back = q('.back'), mid = q('.mid'), cap = q('.cap');
+          const frameImg = el.querySelector('img.vid');
+          const videoEl = el.querySelector('video.vid');
 
-          // Crossfade: a cena entra sobre a anterior e a anterior some depois
           if (i === 0) {
             gsap.set(el, { autoAlpha: 1 });
-            if (clip) gsap.set(clip, { autoAlpha: 1 });
+            if (videoEl) videoEl.play().catch(() => {});
           } else {
-            tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 2 }, t - 1);
+            tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.8 }, t - 0.9);
             tl.set(sc[i - 1], { autoAlpha: 0 }, t + 1);
-            if (clip) {
-              tl.fromTo(clip, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.5 }, t - 1);
+            if (videoEl) {
+              tl.call(() => { videoEl.play().catch(() => {}); }, null, t);
             }
           }
 
-          // Camera dolly + Parallax 3D: camadas com velocidades e rotação diferentes
           const out = i === S.length - 1;
-          tl.fromTo(back, { scale: out ? 1.45 : 1.05 }, { scale: out ? 1.05 : 1.3, duration: L + 1 }, t - 1);
-          tl.fromTo(mid,
-            { scale: out ? 1.45 : 1, xPercent: i === 1 ? -6 : -2, rotationY: -5 },
-            { scale: out ? 1 : (S[i].mask ? 2.2 : 1.5), xPercent: i === 1 ? 6 : 2, rotationY: 5, duration: L + 1, transformOrigin: S[i].mask ? '50% 60%' : '50% 50%' },
-            t - 1
-          );
-          tl.fromTo(front, { scale: 1 }, { scale: 1.2, duration: L + 1 }, t - 1);
+          tl.fromTo(back, { scale: out ? 1.25 : 1.0 }, { scale: out ? 1.0 : 1.15, duration: L }, t);
+          tl.fromTo(mid, { scale: out ? 1.15 : 1.0 }, { scale: out ? 1.0 : 1.12, duration: L }, t);
 
-          // Scrub contínuo dos 56 quadros reais do clipe via scroll
-          if (clip && !out) {
+          if (frameImg && !out) {
             const scrubObj = { frame: 0 };
             tl.to(scrubObj, {
               frame: TOTAL_FRAMES - 1,
@@ -1083,41 +1182,44 @@
               ease: 'none',
               onUpdate: () => {
                 const fIdx = Math.min(TOTAL_FRAMES - 1, Math.floor(scrubObj.frame));
-                clip.src = `frames/${S[i].k}/${fIdx}.webp`;
+                frameImg.src = `frames/${S[i].k}/${fIdx}.webp`;
               }
             }, t);
           }
 
-          const pic = mid.querySelector(".pic");
-          if (pic && S[i].p) {
-            tl.fromTo(pic, { objectPosition: S[i].p[0] + "% 50%" }, { objectPosition: S[i].p[1] + "% 50%", duration: L + 1 }, t - 1);
+          if (sweep && i > 0) {
+            tl.fromTo(sweep, { opacity: 0, xPercent: -100 }, { opacity: 0.5, xPercent: 100, duration: 1.6, ease: 'power2.out' }, t - 0.5);
           }
 
           if (cap) {
-            tl.fromTo(cap, { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 2)
-              .to(cap, { autoAlpha: 0, y: -16, duration: 1.2 }, t + 7.4);
+            tl.fromTo(cap, { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 1.5 }, t + 1.2)
+              .to(cap, { autoAlpha: 0, y: -12, duration: 1.2 }, t + 7.6);
           }
 
-          // Mask transition + match cut: passagem pelo vão da porta revela o interior (Cena 4 Casamento -> Interior)
-          const rv = q('.reveal');
-          if (rv) {
-            tl.set(rv, { autoAlpha: 1 }, t + 4);
-            tl.fromTo(rv, { clipPath: 'inset(42% 36% 28% 36% round 12px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 2.6 }, t + 4);
-            tl.fromTo(rv.querySelector('.mid'), { scale: 1.4 }, { scale: 1, duration: 3.4 }, t + 4);
-            tl.fromTo(rv.querySelector('.back'), { scale: 1.3 }, { scale: 1.05, duration: 3.4 }, t + 4);
-          }
-
-          // Encerramento: Revelação de COUTO EXECUTIVO, frase e botão WhatsApp sobre o Nivus intacto
           if (out) {
-            const e = el.querySelectorAll('.end h2, .end p, .end .cta');
-            e.forEach((x, k) => tl.fromTo(x, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 2.5 + k * 1.5));
+            const carImg = el.querySelector('.car');
+            const endTitle = el.querySelector('.end h2');
+            const endText = el.querySelector('.end p');
+            const endCta = el.querySelector('.end .cta');
+
+            if (carImg) {
+              tl.fromTo(carImg, { scale: 1.08, opacity: 0.7 }, { scale: 1.0, opacity: 1, duration: 2.5 }, t);
+            }
+            if (endTitle) {
+              tl.fromTo(endTitle, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 1.5);
+            }
+            if (endText) {
+              tl.fromTo(endText, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 2.8);
+            }
+            if (endCta) {
+              tl.fromTo(endCta, { autoAlpha: 0, y: 16, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.6 }, t + 4.0);
+            }
           }
         });
 
-        tl.to({}, { duration: 2 }, L * S.length - 1); // Respiro final antes de soltar o pin
-      });
+        tl.to({}, { duration: 2 }, L * S.length - 1);
+      }
     })();
-
 
     function handleQuoteSubmit(e) {
       e.preventDefault();
