@@ -547,8 +547,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(14px) brightness(.45) saturate(1.2);
-      transform: scale(1.08);
+      filter: blur(18px) brightness(.45) saturate(1.2);
+      transform: scale(1.15);
     }
 
     .mid {
@@ -561,9 +561,13 @@
     .pic {
       display: block;
       width: 100%;
-      height: 100svh;
+      height: 58svh;
+      max-height: 520px;
       object-fit: cover;
-      object-position: center center;
+      object-position: center 30%;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+      filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.9));
     }
 
     /* Cena 06 - Encerramento: Nivus inteiro visivel sem cortes */
@@ -714,21 +718,154 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
     }
 
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 380px;
+      margin-top: 8px;
+    }
+
     .cta {
-      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       pointer-events: auto;
       visibility: hidden;
-      padding: 15px 30px;
+      padding: 13px 18px;
       border-radius: 999px;
-      background: var(--cinema-gold);
-      color: #000;
-      font: 600 14px/1 var(--cinema-sans);
-      letter-spacing: .08em;
+      font: 600 13px/1 var(--cinema-sans);
+      letter-spacing: .06em;
       text-decoration: none;
       text-transform: uppercase;
-      box-shadow: 0 8px 24px rgba(201, 162, 75, 0.35);
-      margin-top: 6px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex: 1;
+      white-space: nowrap;
+    }
+
+    .cta-wa {
+      background: #25d366;
+      color: #03200e;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+    }
+    .cta-wa:hover, .cta-wa:active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+    }
+
+    .cta-ig {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(220, 39, 67, 0.35);
+    }
+    .cta-ig:hover, .cta-ig:active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(220, 39, 67, 0.45);
+    }
+
+    .cta-icon {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    /* BARRA FIXA MOBILE E DOCK FLUTUANTE */
+    .mobile-sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      background: rgba(7, 10, 14, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-sticky-cta {
+        display: none !important;
+      }
+    }
+
+    .sticky-btn-wa {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #25d366;
+      color: #03200e;
+      font: 700 12px/1 var(--cinema-sans);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 13px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+
+    .sticky-btn-ig {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff;
+      font: 700 12px/1 var(--cinema-sans);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 13px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(220, 39, 67, 0.3);
+    }
+
+    .float-dock {
+      position: fixed;
+      right: 22px;
+      bottom: 24px;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .float-dock {
+        display: none !important;
+      }
+    }
+
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .float-btn:hover {
+      transform: scale(1.1);
+    }
+    .float-wa {
+      background: #25d366;
+      color: #fff;
+    }
+    .float-ig {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
     }
 
     .hud {
@@ -925,25 +1062,42 @@
     </div>
   </footer>
 
-  <!-- BOTÃO FLUTUANTE DESKTOP -->
-  <a class="float-wa"
-    href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo."
-    aria-label="WhatsApp" target="_blank" rel="noopener">
-    <svg viewBox="0 0 32 32" fill="currentColor">
-      <path
-        d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.912 6.478L4 29l7.72-1.867A11.94 11.94 0 0016.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.75c-1.98 0-3.83-.55-5.41-1.51l-.388-.23-4.58 1.108 1.144-4.463-.253-.402A9.71 9.71 0 016.25 15c0-5.385 4.366-9.75 9.751-9.75 5.384 0 9.75 4.365 9.75 9.75s-4.366 9.75-9.75 9.75zm5.34-7.29c-.293-.147-1.735-.857-2.004-.955-.269-.098-.464-.147-.66.147-.196.293-.758.955-.929 1.15-.171.196-.343.22-.635.073-.293-.147-1.236-.456-2.355-1.454-.87-.776-1.457-1.735-1.628-2.028-.171-.293-.018-.451.129-.598.132-.132.293-.343.44-.514.147-.171.196-.293.294-.489.098-.196.049-.367-.024-.514-.073-.147-.66-1.591-.905-2.18-.238-.572-.48-.494-.66-.503-.171-.008-.367-.01-.562-.01a1.08 1.08 0 00-.782.367c-.269.293-1.026 1.002-1.026 2.445s1.051 2.836 1.198 3.032c.147.196 2.07 3.16 5.016 4.432.701.303 1.248.484 1.674.62.703.224 1.343.192 1.849.117.564-.084 1.735-.709 1.98-1.394.245-.685.245-1.271.171-1.394-.073-.122-.269-.196-.562-.343z" />
-    </svg>
-  </a>
-
-  <!-- BARRA FIXA MOBILE -->
-  <div class="mobile-sticky-cta">
-    <a href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo."
-      target="_blank" rel="noopener">
-      Agendar no WhatsApp · (19) 98346-3457
+  <!-- DOCK FLUTUANTE DESKTOP (WHATSAPP + INSTAGRAM) -->
+  <div class="float-dock">
+    <a class="float-btn float-ig" href="https://www.instagram.com/couto.executivo" target="_blank" rel="noopener" aria-label="Instagram Couto Executivo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+      </svg>
+    </a>
+    <a class="float-btn float-wa" href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo." target="_blank" rel="noopener" aria-label="WhatsApp Couto Executivo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2.1c-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.6.1-.8.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.2-.2-.4-.3-.7-.4z"/>
+        <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.4-2.9-1.4-4.5 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.7 8.4-8.2 8.4z"/>
+      </svg>
     </a>
   </div>
 
-  <script>
+  <!-- BARRA FIXA MOBILE (WHATSAPP + INSTAGRAM LADO A LADO) -->
+  <div class="mobile-sticky-cta">
+    <a class="sticky-btn-wa" href="https://wa.me/5519983463457?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20com%20o%20Couto%20Executivo." target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2.1c-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.6.1-.8.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.2-.2-.4-.3-.7-.4z"/>
+        <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.4-2.9-1.4-4.5 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.7 8.4-8.2 8.4z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+    <a class="sticky-btn-ig" href="https://www.instagram.com/couto.executivo" target="_blank" rel="noopener" aria-label="Instagram Couto Executivo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+      </svg>
+      <span>Instagram</span>
+    </a>
+  </div>
+<script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     (function initArrivalVideo() {
@@ -1095,10 +1249,19 @@
               <img class="car-pic" alt="${s.d}" src="${s.img}" onerror="if(!this.src.endsWith('.webp'))this.src=this.src.replace('.jpg','.webp')">
             </div>
             <div class="fx"></div>
-            <div class="end">
+                        <div class="end">
               <h2>COUTO EXECUTIVO</h2>
-              <p>Seu destino merece uma experiência exclusiva.</p>
-              <a class="cta" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo" target="_blank" rel="noopener">AGENDAR PELO WHATSAPP</a>
+              <p>Seu destino merece uma experiǦncia exclusiva.</p>
+              <div class="cta-row">
+                <a class="cta cta-wa" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo" target="_blank" rel="noopener">
+                  <svg class="cta-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.4.1-.2 0-.3 0-.5s-.6-1.5-.8-2.1c-.2-.5-.5-.4-.6-.4h-.5c-.2 0-.6.1-.8.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.7.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.2-.2-.4-.3-.7-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.4-2.9-1.4-4.5 0-4.5 3.7-8.2 8.2-8.2s8.2 3.7 8.2 8.2-3.7 8.4-8.2 8.4z"/></svg>
+                  <span>WhatsApp</span>
+                </a>
+                <a class="cta cta-ig" href="https://www.instagram.com/couto.executivo" target="_blank" rel="noopener">
+                  <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           `;
         } else {
@@ -1180,13 +1343,13 @@
           }
 
           if (back) {
-            tl.fromTo(back, { scale: out ? 1.2 : 1.0 }, { scale: out ? 1.0 : 1.15, duration: L }, t);
+            tl.fromTo(back, { scale: out ? 1.2 : 1.18, yPercent: 3 }, { scale: out ? 1.0 : 1.05, yPercent: -3, duration: L }, t);
           }
           if (mid) {
             if (out) {
-              tl.fromTo(mid, { scale: 1.05 }, { scale: 1.0, duration: L }, t);
+              tl.fromTo(mid, { scale: 1.05, yPercent: 2 }, { scale: 1.0, yPercent: 0, duration: L }, t);
             } else {
-              tl.fromTo(mid, { scale: 1.0 }, { scale: 1.1, duration: L }, t);
+              tl.fromTo(mid, { scale: 0.98, yPercent: 2 }, { scale: 1.07, yPercent: -2, duration: L }, t);
             }
           }
 
