@@ -531,39 +531,75 @@
       background: #000;
     }
 
-    .vid {
+    .ly {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform-origin: 50% 55%;
+      inset: -5%;
       will-change: transform;
     }
 
-    .bgi {
+    .back {
+      background: #000;
+    }
+
+    .bgi, .bg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(16px) brightness(.5) saturate(1.2);
+      filter: blur(14px) brightness(.45) saturate(1.2);
+      transform: scale(1.08);
     }
 
-    .car {
-      position: absolute;
-      left: 0;
-      top: 50%;
+    .mid {
+      display: grid;
+      place-items: center;
       width: 100%;
+      height: 100%;
+    }
+
+    .pic {
+      display: block;
+      width: 100%;
+      height: 100svh;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Cena 06 - Encerramento: Nivus inteiro visivel sem cortes */
+    .scene-end .mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 24svh;
+    }
+
+    .car-pic {
+      display: block;
+      width: 100%;
+      max-width: 440px;
       height: auto;
-      transform-origin: 28% 62%;
+      max-height: 52svh;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85));
+    }
+
+    .front {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(90% 70% at 50% 45%, transparent 45%, #000 100%),
+                  linear-gradient(to top, #000 0, rgba(0, 0, 0, 0.7) 22%, transparent 45%);
     }
 
     .fx {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: radial-gradient(90% 70% at 50% 45%, transparent 50%, #000a 100%), linear-gradient(to top, #000 0, #000a 18%, transparent 42%);
+      background: radial-gradient(90% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.85) 100%),
+                  linear-gradient(to top, #000 0, rgba(0,0,0,0.8) 20%, transparent 45%);
     }
 
     .dof {
@@ -571,10 +607,10 @@
       inset: 0;
       z-index: 3;
       pointer-events: none;
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
-      -webkit-mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 58%, #000 100%);
-      mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 58%, #000 100%);
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+      -webkit-mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 62%, #000 100%);
+      mask-image: radial-gradient(ellipse 85% 72% at 50% 50%, transparent 62%, #000 100%);
     }
 
     .bok {
@@ -584,8 +620,9 @@
       top: 0;
       height: 200%;
       pointer-events: none;
-      opacity: .5;
-      background: radial-gradient(circle, #c9a24b66 0 3px, transparent 4px) 0 0/90px 140px, radial-gradient(circle, #efe7d444 0 6px, transparent 7px) 40px 70px/170px 230px;
+      opacity: .35;
+      background: radial-gradient(circle, #c9a24b55 0 3px, transparent 4px) 0 0/90px 140px,
+                  radial-gradient(circle, #efe7d433 0 6px, transparent 7px) 40px 70px/170px 230px;
     }
 
     .sw {
@@ -594,7 +631,7 @@
       z-index: 4;
       pointer-events: none;
       opacity: 0;
-      background: linear-gradient(105deg, transparent 35%, #c9a24b55 50%, transparent 65%);
+      background: linear-gradient(105deg, transparent 35%, #c9a24b44 50%, transparent 65%);
     }
 
     .lb {
@@ -602,27 +639,19 @@
       z-index: 6;
       left: 0;
       right: 0;
-      height: 6svh;
+      height: 4.5svh;
       background: #000;
       pointer-events: none;
     }
-
-    .lbt {
-      top: 0;
-      transform-origin: 50% 0;
-    }
-
-    .lbb {
-      bottom: 0;
-      transform-origin: 50% 100%;
-    }
+    .lbt { top: 0; }
+    .lbb { bottom: 0; }
 
     .grain {
       position: absolute;
       z-index: 7;
       inset: 0;
       pointer-events: none;
-      opacity: .09;
+      opacity: .07;
       mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
     }
@@ -631,37 +660,26 @@
       position: absolute;
       left: 24px;
       right: 24px;
-      bottom: calc(14svh + env(safe-area-inset-bottom, 0px));
+      bottom: calc(12svh + env(safe-area-inset-bottom, 0px));
+      z-index: 6;
       visibility: hidden;
-      z-index: 5;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
     }
 
     .cap p {
       margin: 0;
-      font: 600 clamp(24px, 7.5vw, 34px)/1.12 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
+      font: 600 clamp(24px, 7.5vw, 32px)/1.15 var(--cinema-serif);
+      color: var(--cinema-ivory);
       text-wrap: balance;
-      color: var(--cinema-ivory, #efe7d4);
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     }
 
     .cap small {
       display: block;
       margin-bottom: 8px;
-      font: 500 12px/1.3 var(--cinema-sans, "Jost", sans-serif);
-      color: var(--cinema-gold, #c9a24b);
+      font: 500 12px/1.3 var(--cinema-sans);
+      color: var(--cinema-gold);
       letter-spacing: .08em;
       text-transform: uppercase;
-    }
-
-    .stp {
-      position: absolute;
-      left: 20px;
-      top: calc(62px + env(safe-area-inset-top, 0px));
-      font: 500 12px/1 var(--cinema-sans, "Jost", sans-serif);
-      letter-spacing: .1em;
-      color: var(--cinema-gold, #c9a24b);
-      text-transform: uppercase;
-      z-index: 8;
     }
 
     .end {
@@ -669,106 +687,81 @@
       inset: 0;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 0 24px;
-      gap: 16px;
-      z-index: 5;
+      padding: 0 24px calc(9svh + env(safe-area-inset-bottom, 0px));
+      gap: 12px;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+      z-index: 6;
     }
 
     .end h2 {
       margin: 0;
-      font: 600 clamp(32px, 9vw, 44px)/1.05 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
-      letter-spacing: .16em;
-      color: var(--cinema-gold, #c9a24b);
+      font: 600 clamp(30px, 9vw, 40px)/1.05 var(--cinema-serif);
+      letter-spacing: .12em;
+      color: var(--cinema-gold);
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
       visibility: hidden;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
     }
 
     .end p {
       margin: 0;
-      font: 500 clamp(18px, 5.2vw, 22px)/1.3 var(--cinema-serif, "Cormorant Garamond", Georgia, serif);
+      font: 500 clamp(16px, 4.2vw, 19px)/1.3 var(--cinema-serif);
+      color: var(--cinema-ivory);
       visibility: hidden;
       text-wrap: balance;
-      color: var(--cinema-ivory, #efe7d4);
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
     }
 
     .cta {
       justify-self: center;
       pointer-events: auto;
       visibility: hidden;
-      padding: 16px 28px;
+      padding: 15px 30px;
       border-radius: 999px;
-      background: var(--cinema-gold, #c9a24b);
+      background: var(--cinema-gold);
       color: #000;
-      font: 600 14px/1 var(--cinema-sans, "Jost", sans-serif);
+      font: 600 14px/1 var(--cinema-sans);
       letter-spacing: .08em;
       text-decoration: none;
-      box-shadow: 0 6px 24px rgba(201, 162, 75, 0.45);
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .cta:hover {
-      filter: brightness(1.1);
-      transform: scale(1.02);
+      text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(201, 162, 75, 0.35);
+      margin-top: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .hud {
       position: absolute;
       z-index: 8;
       top: calc(14px + env(safe-area-inset-top, 0px));
-      left: 16px;
-      right: 16px;
+      left: 20px;
+      right: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font: 500 12px/1 var(--cinema-sans, "Jost", sans-serif);
+      font: 500 12px/1 var(--cinema-sans);
       color: #b9b09a;
-      pointer-events: none;
+      letter-spacing: 0.05em;
     }
 
     .hud-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: rgba(7, 10, 14, 0.85);
-      border: 1px solid rgba(201, 162, 75, 0.4);
+      gap: 6px;
+      padding: 5px 10px;
       border-radius: 999px;
-      padding: 5px 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(201, 162, 75, 0.3);
+      color: var(--cinema-gold);
     }
 
     .hud-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #25d366;
-      box-shadow: 0 0 6px #25d366;
-    }
-
-    .hud-badge span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--cinema-gold, #c9a24b);
-      text-transform: uppercase;
-    }
-
-    .hud-count {
-      background: rgba(7, 10, 14, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      color: #b9b09a;
+      background: var(--cinema-gold);
+      box-shadow: 0 0 8px var(--cinema-gold);
     }
 
     .bar {
@@ -776,9 +769,9 @@
       z-index: 8;
       left: 0;
       top: 0;
-      height: 2px;
+      height: 2.5px;
       width: 100%;
-      background: var(--cinema-gold, #c9a24b);
+      background: var(--cinema-gold);
       transform: scaleX(0);
       transform-origin: 0 50%;
     }
@@ -795,20 +788,14 @@
       margin-bottom: 2px;
     }
 
-    .lite .cap,
-    .lite .end h2,
-    .lite .end p,
-    .lite .cta {
+    .lite .cap, .lite .end h2, .lite .end p, .lite .cta {
       visibility: visible;
     }
 
-    .lite .hud,
-    .lite .bar,
-    .lite .stp,
-    .lite .lb,
-    .lite .grain {
+    .lite .hud, .lite .bar {
       display: none;
     }
+
   </style>
   <!-- GSAP & ScrollTrigger Oficiais -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -1020,47 +1007,70 @@
 
     
     
-        /* ========================================================
+    /* ========================================================
        COUTO EXECUTIVO — CINEMATIC JOURNEY (GSAP + SCROLLTRIGGER)
-       Formato do Código Exato do Usuário
-       Otimizações Mobile 100%:
-       - Cena 5 (dentro do carro): enquadramento mobile 58-60svh, sem corte e proporção natural
-       - Cena 6 (carro / encerramento): veículo completo sem cortes + tipografia e botão WhatsApp idênticos à referência
+       Direção Fotográfica Exclusiva com as 6 Fotos Oficiais:
+       01-aeroporto, 02-balada, 03-rodeio, 04-casamento, 05-viagem, 06-encerramento
+       Sem vídeos, sem cortes no carro e com encerramento perfeito!
        ======================================================== */
     (function initCinematicFilm() {
       const film = document.getElementById('film');
       if (!film) return;
 
       const S = [
-        { k: "individual", v: "01.mp4", n: "Executivo individual", t: "Do aeroporto a reuniao, sem pressa e sem imprevistos.", d: "Motorista recebe a passageira no aeroporto.", img: "img/aeroporto.webp" },
-        { k: "balada", v: "02.mp4", n: "Balada e eventos", t: "Saia tranquilo. Quem dirige e o motorista.", d: "Motorista recebe a convidada na entrada do evento.", img: "img/festa.webp" },
-        { k: "rodeio", v: "03.mp4", n: "Rodeio", t: "Chegue com estilo e aproveite o evento.", d: "Motorista recebe o casal no rodeio.", img: "img/rodeio.webp" },
-        { k: "casamento", v: "04.mp4", n: "Casamento", t: "O dia mais importante merece uma chegada a altura.", d: "Motorista ajuda a noiva a entrar no Nivus.", img: "img/casamento.webp" },
-        { k: "interior", v: "05.mp4", n: "A viagem", t: "Viaje com tranquilidade. Aproveite cada momento.", d: "Motorista conduz o Nivus a noite com passageiro satisfeito.", img: "img/dentro_do_carro.webp" },
-        { k: "fim", n: "Couto Executivo", t: "", d: "Volkswagen Nivus Cinza Moonstone diante do hotel a noite.", end: true, img: "img/carro.webp" }
-      ];
-
-      const TOTAL_FRAMES = 56;
-      const cachedFrames = {};
-      S.forEach(s => {
-        if (!s.end) {
-          cachedFrames[s.k] = [];
-          for (let f = 0; f < TOTAL_FRAMES; f++) {
-            const im = new Image();
-            im.src = `frames/${s.k}/${f}.webp`;
-            cachedFrames[s.k].push(im);
-          }
+        {
+          k: "01-aeroporto",
+          n: "Executivo individual",
+          t: "Do aeroporto à reunião, sem pressa e sem imprevistos.",
+          d: "Motorista recebe a passageira no aeroporto.",
+          img: "img/01-aeroporto.jpg"
+        },
+        {
+          k: "02-balada",
+          n: "Balada e eventos",
+          t: "Saia tranquilo. Quem dirige é o motorista.",
+          d: "Motorista recebe a convidada na entrada do evento.",
+          img: "img/02-balada.jpg"
+        },
+        {
+          k: "03-rodeio",
+          n: "Rodeio",
+          t: "Chegue com estilo e aproveite o evento.",
+          d: "Motorista recebe o casal no rodeio.",
+          img: "img/03-rodeio.jpg"
+        },
+        {
+          k: "04-casamento",
+          n: "Casamento",
+          t: "O dia mais importante merece uma chegada à altura.",
+          d: "Motorista ajuda a noiva a entrar no Nivus.",
+          img: "img/04-casamento.jpg"
+        },
+        {
+          k: "05-viagem",
+          n: "A viagem",
+          t: "Viaje com tranquilidade. Aproveite cada momento.",
+          d: "Motorista conduz o Nivus à noite com total tranquilidade.",
+          img: "img/05-viagem.jpg"
+        },
+        {
+          k: "06-encerramento",
+          n: "Couto Executivo",
+          t: "",
+          d: "Volkswagen Nivus Cinza Moonstone diante do hotel à noite.",
+          end: true,
+          img: "img/06-encerramento.jpg"
         }
-      });
+      ];
 
       film.innerHTML = `
         <div class="bar" id="bar"></div>
         <div class="hud">
           <div class="hud-badge">
             <span class="hud-dot"></span>
-            <span>VW Nivus Cinza Moonstone Oficial</span>
+            <span id="hud-title">Executivo individual</span>
           </div>
-          <span class="hud-count" id="hud-count">01 / 06</span>
+          <span id="hud-count" style="color:var(--cinema-gold);font-weight:600">01 / 06</span>
         </div>
         <div class="lb lbt"></div>
         <div class="lb lbb"></div>
@@ -1068,38 +1078,36 @@
         <div class="dof"></div>
         <div class="bok"></div>
         <div class="sw" id="cinema-sweep"></div>
-        <div class="stp" id="cinema-step">EXECUTIVO INDIVIDUAL</div>
       `;
 
       S.forEach((s, i) => {
         const el = document.createElement('div');
-        el.className = 'scene';
+        el.className = 'scene' + (s.end ? ' scene-end' : '');
         el.setAttribute('role', 'group');
         el.setAttribute('aria-label', `Cena ${i + 1}: ${s.n}`);
 
         if (s.end) {
           el.innerHTML = `
-            <div class="ly back" style="background:#000">
-              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
+            <div class="ly back">
+              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.webp'))this.src=this.src.replace('.jpg','.webp')">
             </div>
-            <div class="ly mid" style="display:flex;align-items:center;justify-content:center;height:100%;width:100%">
-              <img class="car" alt="Volkswagen Nivus Cinza Moonstone" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')" style="position:relative;top:auto;left:auto;width:100%;max-height:56svh;object-fit:contain;-webkit-mask-image:none;mask-image:none">
+            <div class="ly mid">
+              <img class="car-pic" alt="${s.d}" src="${s.img}" onerror="if(!this.src.endsWith('.webp'))this.src=this.src.replace('.jpg','.webp')">
             </div>
             <div class="fx"></div>
             <div class="end">
-              <h2>COUTO<br>EXECUTIVO</h2>
-              <p>Seu destino merece uma experiencia exclusiva.</p>
-              <a class="cta" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo">AGENDAR PELO WHATSAPP</a>
+              <h2>COUTO EXECUTIVO</h2>
+              <p>Seu destino merece uma experiência exclusiva.</p>
+              <a class="cta" href="https://wa.me/5519983463457?text=Ol%C3%A1%2C%20quero%20agendar%20com%20a%20Couto%20Executivo" target="_blank" rel="noopener">AGENDAR PELO WHATSAPP</a>
             </div>
           `;
         } else {
           el.innerHTML = `
-            <div class="ly back" style="background:#000">
-              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.jpg'))this.src=this.src.replace('.webp','.jpg')">
+            <div class="ly back">
+              <img class="bgi" alt="" src="${s.img}" onerror="if(!this.src.endsWith('.webp'))this.src=this.src.replace('.jpg','.webp')">
             </div>
-            <div class="ly mid" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
-              <video class="vid" src="videos/${s.v}" playsinline muted loop preload="auto" style="display:none"></video>
-              <img class="vid" src="frames/${s.k}/0.webp" alt="${s.d}" onerror="this.src='${s.img}'" style="display:block">
+            <div class="ly mid">
+              <img class="pic" alt="${s.d}" src="${s.img}" onerror="if(!this.src.endsWith('.webp'))this.src=this.src.replace('.jpg','.webp')">
             </div>
             <div class="fx"></div>
             <div class="cap">
@@ -1124,8 +1132,8 @@
 
         const sc = [...film.querySelectorAll(':scope > .scene')];
         const L = 10;
+        const hudTitle = document.getElementById('hud-title');
         const hudCount = document.getElementById('hud-count');
-        const cinemaStep = document.getElementById('cinema-step');
         const bar = document.getElementById('bar');
         const sweep = document.getElementById('cinema-sweep');
         const bok = film.querySelector('.bok');
@@ -1142,78 +1150,56 @@
             onUpdate: s => {
               if (bar) bar.style.transform = `scaleX(${s.progress})`;
               const activeIndex = Math.min(S.length - 1, Math.floor(s.progress * S.length));
+              if (hudTitle) hudTitle.textContent = S[activeIndex].n;
               if (hudCount) hudCount.textContent = `0${activeIndex + 1} / 0${S.length}`;
-              if (cinemaStep) cinemaStep.textContent = S[activeIndex].n.toUpperCase();
             }
           }
         });
 
         if (bok) {
-          tl.to(bok, { yPercent: -25, duration: L * S.length, ease: 'none' }, 0);
+          tl.to(bok, { yPercent: -20, duration: L * S.length, ease: 'none' }, 0);
         }
 
         sc.forEach((el, i) => {
           const t = i * L;
           const q = c => el.querySelector(':scope > ' + c);
-          const back = q('.back'), mid = q('.mid'), cap = q('.cap');
-          const frameImg = el.querySelector('img.vid');
-          const videoEl = el.querySelector('video.vid');
+          const back = q('.back');
+          const mid = q('.mid');
+          const cap = q('.cap');
+          const out = i === S.length - 1;
 
           if (i === 0) {
             gsap.set(el, { autoAlpha: 1 });
-            if (videoEl) videoEl.play().catch(() => {});
           } else {
             tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.8 }, t - 0.9);
             tl.set(sc[i - 1], { autoAlpha: 0 }, t + 1);
-            if (videoEl) {
-              tl.call(() => { videoEl.play().catch(() => {}); }, null, t);
+            if (sweep) {
+              tl.fromTo(sweep, { opacity: 0, xPercent: -50 }, { opacity: 0.7, xPercent: 50, duration: 1.2, ease: "power1.inOut" }, t - 0.6)
+                .to(sweep, { opacity: 0, duration: 0.4 }, t + 0.6);
             }
           }
 
-          const out = i === S.length - 1;
-          tl.fromTo(back, { scale: out ? 1.25 : 1.0 }, { scale: out ? 1.0 : 1.15, duration: L }, t);
-          tl.fromTo(mid, { scale: out ? 1.15 : 1.0 }, { scale: out ? 1.0 : 1.12, duration: L }, t);
-
-          if (frameImg && !out) {
-            const scrubObj = { frame: 0 };
-            tl.to(scrubObj, {
-              frame: TOTAL_FRAMES - 1,
-              duration: L,
-              ease: 'none',
-              onUpdate: () => {
-                const fIdx = Math.min(TOTAL_FRAMES - 1, Math.floor(scrubObj.frame));
-                frameImg.src = `frames/${S[i].k}/${fIdx}.webp`;
-              }
-            }, t);
+          if (back) {
+            tl.fromTo(back, { scale: out ? 1.2 : 1.0 }, { scale: out ? 1.0 : 1.15, duration: L }, t);
           }
-
-          if (sweep && i > 0) {
-            tl.fromTo(sweep, { opacity: 0, xPercent: -100 }, { opacity: 0.5, xPercent: 100, duration: 1.6, ease: 'power2.out' }, t - 0.5);
+          if (mid) {
+            if (out) {
+              tl.fromTo(mid, { scale: 1.05 }, { scale: 1.0, duration: L }, t);
+            } else {
+              tl.fromTo(mid, { scale: 1.0 }, { scale: 1.1, duration: L }, t);
+            }
           }
 
           if (cap) {
-            tl.fromTo(cap, { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 1.5 }, t + 1.2)
-              .to(cap, { autoAlpha: 0, y: -12, duration: 1.2 }, t + 7.6);
+            tl.fromTo(cap, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.5 }, t + 1.2)
+              .to(cap, { autoAlpha: 0, y: -16, duration: 1.0 }, t + 7.5);
           }
 
           if (out) {
-            const carImg = el.querySelector('.car');
-            const endTitle = el.querySelector('.end h2');
-            const endText = el.querySelector('.end p');
-            const endCta = el.querySelector('.end .cta');
-
-            if (carImg) {
-              tl.fromTo(carImg, { scale: 1.08, opacity: 0.7 }, { scale: 1.0, opacity: 1, duration: 2.5 }, t);
-            }
-            if (endTitle) {
-              tl.fromTo(endTitle, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 1.5);
-            }
-            if (endText) {
-              tl.fromTo(endText, { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1.6 }, t + 2.8);
-            }
-            if (endCta) {
-              tl.fromTo(endCta, { autoAlpha: 0, y: 16, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 1.6 }, t + 4.0);
-            }
+            const e = el.querySelectorAll('.end h2, .end p, .end .cta');
+            e.forEach((x, k) => {
+              tl.fromTo(x, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 1.4 }, t + 1.8 + k * 1.2);
+            });
           }
         });
 
